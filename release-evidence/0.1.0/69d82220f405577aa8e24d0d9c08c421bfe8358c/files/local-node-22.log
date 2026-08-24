@@ -1,0 +1,1227 @@
+npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 118 packages, and audited 119 packages in 704ms
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> herdr-gitrail@0.1.0 check
+> npm run lint && npm run test:coverage
+
+
+> herdr-gitrail@0.1.0 lint
+> node scripts/lint.mjs && eslint . && knip --include exports
+
+
+> herdr-gitrail@0.1.0 test:coverage
+> node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include='src/**/*.mjs' --test-coverage-lines=95 --test-coverage-branches=86 --test-coverage-functions=95
+
+TAP version 13
+# Subtest: tab creation uses the event tab instead of the globally focused tab
+ok 1 - tab creation uses the event tab instead of the globally focused tab
+  ---
+  duration_ms: 1.361833
+  type: 'test'
+  ...
+# Subtest: startup reconciliation chooses one non-GitRail pane per tab
+ok 2 - startup reconciliation chooses one non-GitRail pane per tab
+  ---
+  duration_ms: 0.312417
+  type: 'test'
+  ...
+# Subtest: event reconciliation filters to the created tab
+ok 3 - event reconciliation filters to the created tab
+  ---
+  duration_ms: 0.075
+  type: 'test'
+  ...
+# Subtest: legacy layout-staging tabs never trigger auto-open
+ok 4 - legacy layout-staging tabs never trigger auto-open
+  ---
+  duration_ms: 0.058083
+  type: 'test'
+  ...
+# Subtest: bounded sweep caps workers and preserves mixed partial results
+ok 5 - bounded sweep caps workers and preserves mixed partial results
+  ---
+  duration_ms: 1.209709
+  type: 'test'
+  ...
+# Subtest: bounded sweep does not dequeue work after its global deadline
+ok 6 - bounded sweep does not dequeue work after its global deadline
+  ---
+  duration_ms: 0.104542
+  type: 'test'
+  ...
+# Subtest: bounded sweep cancels every target when the deadline has already expired
+ok 7 - bounded sweep cancels every target when the deadline has already expired
+  ---
+  duration_ms: 0.093541
+  type: 'test'
+  ...
+# Subtest: bounded sweep reports both active and queued jobs as deadline-cancelled
+ok 8 - bounded sweep reports both active and queued jobs as deadline-cancelled
+  ---
+  duration_ms: 0.578458
+  type: 'test'
+  ...
+# Subtest: auto-open target gives its process group the remaining deadline and recovery grace
+ok 9 - auto-open target gives its process group the remaining deadline and recovery grace
+  ---
+  duration_ms: 2.209083
+  type: 'test'
+  ...
+# Subtest: the global auto-open deadline starts before Herdr discovery
+ok 10 - the global auto-open deadline starts before Herdr discovery
+  ---
+  duration_ms: 4.935167
+  type: 'test'
+  ...
+# Subtest: only user configuration can disable automatic Herdr opening
+ok 11 - only user configuration can disable automatic Herdr opening
+  ---
+  duration_ms: 2.46775
+  type: 'test'
+  ...
+# Subtest: non-Git legacy labels never authorize closing a user pane
+ok 12 - non-Git legacy labels never authorize closing a user pane
+  ---
+  duration_ms: 199.912667
+  type: 'test'
+  ...
+# Subtest: Herdr launch keeps plugin code rooted while passing the selected repository explicitly
+ok 13 - Herdr launch keeps plugin code rooted while passing the selected repository explicitly
+  ---
+  duration_ms: 356.9055
+  type: 'test'
+  ...
+# Subtest: live pane owns the single product title
+ok 14 - live pane owns the single product title
+  ---
+  duration_ms: 3.181459
+  type: 'test'
+  ...
+# Subtest: Herdr opens GitRail for restored and newly created tabs
+ok 15 - Herdr opens GitRail for restored and newly created tabs
+  ---
+  duration_ms: 1.091791
+  type: 'test'
+  ...
+# Subtest: Herdr exposes a current-tab GitRail toggle action
+ok 16 - Herdr exposes a current-tab GitRail toggle action
+  ---
+  duration_ms: 0.4165
+  type: 'test'
+  ...
+# Subtest: file previews open in a dedicated Herdr tab
+ok 17 - file previews open in a dedicated Herdr tab
+  ---
+  duration_ms: 0.61825
+  type: 'test'
+  ...
+# Subtest: preview scrolling repaints in place without clearing the screen
+ok 18 - preview scrolling repaints in place without clearing the screen
+  ---
+  duration_ms: 0.575583
+  type: 'test'
+  ...
+# Subtest: manual refresh confirmation is transient
+ok 19 - manual refresh confirmation is transient
+  ---
+  duration_ms: 0.54075
+  type: 'test'
+  ...
+# Subtest: configuration validates version, launch mode, and refresh bounds
+ok 20 - configuration validates version, launch mode, and refresh bounds
+  ---
+  duration_ms: 1.025667
+  type: 'test'
+  ...
+# Subtest: the shipped example is governed by runtime validation alone
+ok 21 - the shipped example is governed by runtime validation alone
+  ---
+  duration_ms: 0.565833
+  type: 'test'
+  ...
+# Subtest: configuration requires a version and rejects nested unknown keys
+ok 22 - configuration requires a version and rejects nested unknown keys
+  ---
+  duration_ms: 0.215041
+  type: 'test'
+  ...
+# Subtest: viewer actions resolve conditionally by selected filename
+ok 23 - viewer actions resolve conditionally by selected filename
+  ---
+  duration_ms: 0.502792
+  type: 'test'
+  ...
+# Subtest: viewer executable preflight detects commands without invoking them
+ok 24 - viewer executable preflight detects commands without invoking them
+  ---
+  duration_ms: 3.129709
+  type: 'test'
+  ...
+# Subtest: configuration rejects mistyped structured values
+ok 25 - configuration rejects mistyped structured values
+  ---
+  duration_ms: 0.086041
+  type: 'test'
+  ...
+# Subtest: user configuration merges by key and environment wins
+ok 26 - user configuration merges by key and environment wins
+  ---
+  duration_ms: 2.105167
+  type: 'test'
+  ...
+# Subtest: an explicit Glow TUI rule is preserved
+ok 27 - an explicit Glow TUI rule is preserved
+  ---
+  duration_ms: 1.426083
+  type: 'test'
+  ...
+# Subtest: environment overrides do not mutate built-in defaults
+ok 28 - environment overrides do not mutate built-in defaults
+  ---
+  duration_ms: 0.871666
+  type: 'test'
+  ...
+# Subtest: editor integration is optional and EDITOR remains a fallback
+ok 29 - editor integration is optional and EDITOR remains a fallback
+  ---
+  duration_ms: 0.733791
+  type: 'test'
+  ...
+# Subtest: invalid environment overrides report errors without replacing valid defaults
+ok 30 - invalid environment overrides report errors without replacing valid defaults
+  ---
+  duration_ms: 0.703
+  type: 'test'
+  ...
+# Subtest: out-of-range polling overrides preserve a user interval
+ok 31 - out-of-range polling overrides preserve a user interval
+  ---
+  duration_ms: 1.760875
+  type: 'test'
+  ...
+# Subtest: structured file diff removes Git plumbing and tracks both line numbers
+ok 32 - structured file diff removes Git plumbing and tracks both line numbers
+  ---
+  duration_ms: 2.023375
+  type: 'test'
+  ...
+# Subtest: structured file diff preserves meaningful file metadata
+ok 33 - structured file diff preserves meaningful file metadata
+  ---
+  duration_ms: 0.101917
+  type: 'test'
+  ...
+# Subtest: structured file diff parses combined conflict hunks
+ok 34 - structured file diff parses combined conflict hunks
+  ---
+  duration_ms: 0.218417
+  type: 'test'
+  ...
+# Subtest: diff rows neutralize repository-controlled terminal sequences
+ok 35 - diff rows neutralize repository-controlled terminal sequences
+  ---
+  duration_ms: 0.227917
+  type: 'test'
+  ...
+# Subtest: structured diff parsing strips Git color without losing hunk semantics
+ok 36 - structured diff parsing strips Git color without losing hunk semantics
+  ---
+  duration_ms: 0.07925
+  type: 'test'
+  ...
+# Subtest: security policy has no fictional contact or response-time promise
+ok 37 - security policy has no fictional contact or response-time promise
+  ---
+  duration_ms: 2.760542
+  type: 'test'
+  ...
+# Subtest: documentation states the eventual refresh and user-only configuration contracts
+ok 38 - documentation states the eventual refresh and user-only configuration contracts
+  ---
+  duration_ms: 0.897958
+  type: 'test'
+  ...
+# Subtest: public installation and release evidence instructions enforce the candidate gates
+ok 39 - public installation and release evidence instructions enforce the candidate gates
+  ---
+  duration_ms: 0.815625
+  type: 'test'
+  ...
+# Subtest: the default local check enforces coverage
+ok 40 - the default local check enforces coverage
+  ---
+  duration_ms: 0.435958
+  type: 'test'
+  ...
+# Subtest: live release cleanup is isolated from the operator's Herdr installation
+ok 41 - live release cleanup is isolated from the operator's Herdr installation
+  ---
+  duration_ms: 0.903208
+  type: 'test'
+  ...
+# Subtest: sealed release logs are not hidden by the general log ignore
+ok 42 - sealed release logs are not hidden by the general log ignore
+  ---
+  duration_ms: 0.432625
+  type: 'test'
+  ...
+# Subtest: 20k-path files model materializes only the viewport at supported widths
+ok 43 - 20k-path files model materializes only the viewport at supported widths
+  ---
+  duration_ms: 189.436375
+  type: 'test'
+  ...
+# Subtest: commit machine formats preserve control characters and unambiguous paths
+ok 44 - commit machine formats preserve control characters and unambiguous paths
+  ---
+  duration_ms: 1.469292
+  type: 'test'
+  ...
+# Subtest: porcelain v2 parser preserves spaces, tabs, unicode, renames, and conflicts
+ok 45 - porcelain v2 parser preserves spaces, tabs, unicode, renames, and conflicts
+  ---
+  duration_ms: 0.21075
+  type: 'test'
+  ...
+# Subtest: combined raw and numstat output preserves metadata, stats, and unusual paths
+ok 46 - combined raw and numstat output preserves metadata, stats, and unusual paths
+  ---
+  duration_ms: 0.236291
+  type: 'test'
+  ...
+# Subtest: the release witness can isolate the recovery poll from filesystem watchers
+ok 47 - the release witness can isolate the recovery poll from filesystem watchers
+  ---
+  duration_ms: 0.75025
+  type: 'test'
+  ...
+# Subtest: git watcher resolves and deduplicates per-worktree and common git directories
+ok 48 - git watcher resolves and deduplicates per-worktree and common git directories
+  ---
+  duration_ms: 2.354167
+  type: 'test'
+  ...
+# Subtest: git watcher never runs Git for an empty repository root
+ok 49 - git watcher never runs Git for an empty repository root
+  ---
+  duration_ms: 0.093292
+  type: 'test'
+  ...
+# Subtest: test/helpers/environment.mjs
+ok 8 - test/helpers/environment.mjs
+  ---
+  duration_ms: 55.826791
+  type: 'test'
+  ...
+# Subtest: content selection follows each tab's focused pane and ignores GitRail panes
+ok 51 - content selection follows each tab's focused pane and ignores GitRail panes
+  ---
+  duration_ms: 0.907458
+  type: 'test'
+  ...
+# Subtest: live cwd resolution is scoped to the rail's own tab
+ok 52 - live cwd resolution is scoped to the rail's own tab
+  ---
+  duration_ms: 0.997125
+  type: 'test'
+  ...
+# Subtest: a focused GitRail Demo never becomes the main rail's content source
+ok 53 - a focused GitRail Demo never becomes the main rail's content source
+  ---
+  duration_ms: 0.077083
+  type: 'test'
+  ...
+# Subtest: a stored GitRail Demo source is discarded in favor of real tab content
+ok 54 - a stored GitRail Demo source is discarded in favor of real tab content
+  ---
+  duration_ms: 0.127583
+  type: 'test'
+  ...
+# Subtest: a moved rail resolves cwd from its current workspace instead of its launch workspace
+ok 55 - a moved rail resolves cwd from its current workspace instead of its launch workspace
+  ---
+  duration_ms: 0.157375
+  type: 'test'
+  ...
+# Subtest: configured sidebar width shrinks a new right split to exact columns
+ok 56 - configured sidebar width shrinks a new right split to exact columns
+  ---
+  duration_ms: 0.78525
+  type: 'test'
+  ...
+# Subtest: configured width never takes more than half a narrow split
+ok 57 - configured width never takes more than half a narrow split
+  ---
+  duration_ms: 0.125958
+  type: 'test'
+  ...
+# Subtest: configured width respects Herdr's minimum split ratio
+ok 58 - configured width respects Herdr's minimum split ratio
+  ---
+  duration_ms: 0.053417
+  type: 'test'
+  ...
+# Subtest: sidebar resize uses Herdr layout and pane APIs without changing focus
+ok 59 - sidebar resize uses Herdr layout and pane APIs without changing focus
+  ---
+  duration_ms: 0.734209
+  type: 'test'
+  ...
+# Subtest: orphaned pane locks are recovered instead of suppressing auto-open
+ok 60 - orphaned pane locks are recovered instead of suppressing auto-open
+  ---
+  duration_ms: 9.7145
+  type: 'test'
+  ...
+# Subtest: a live lock cannot be age-evicted or released by an earlier owner
+ok 61 - a live lock cannot be age-evicted or released by an earlier owner
+  ---
+  duration_ms: 105.718791
+  type: 'test'
+  ...
+# Subtest: an orphaned reclaimer cannot permanently wedge a pane lock
+ok 62 - an orphaned reclaimer cannot permanently wedge a pane lock
+  ---
+  duration_ms: 4.570375
+  type: 'test'
+  ...
+# Subtest: existing current rails are adopted, deduplicated, and never reopened from themselves
+ok 63 - existing current rails are adopted, deduplicated, and never reopened from themselves
+  ---
+  duration_ms: 4.36025
+  type: 'test'
+  ...
+# Subtest: toggle closes only the verified GitRail rail and clears its tab state
+ok 64 - toggle closes only the verified GitRail rail and clears its tab state
+  ---
+  duration_ms: 2.187167
+  type: 'test'
+  ...
+# Subtest: toggle opens a rail when the current tab has none
+ok 65 - toggle opens a rail when the current tab has none
+  ---
+  duration_ms: 2.837958
+  type: 'test'
+  ...
+# Subtest: automatic ensure uses a safe outer-right split without layout staging
+ok 66 - automatic ensure uses a safe outer-right split without layout staging
+  ---
+  duration_ms: 2.966583
+  type: 'test'
+  ...
+# Subtest: legacy rails are replaced at the right edge using the tab-focused source cwd
+ok 67 - legacy rails are replaced at the right edge using the tab-focused source cwd
+  ---
+  duration_ms: 2.9275
+  type: 'test'
+  ...
+# Subtest: automatic ensure adopts a middle rail without rearranging user panes
+ok 68 - automatic ensure adopts a middle rail without rearranging user panes
+  ---
+  duration_ms: 2.164917
+  type: 'test'
+  ...
+# Subtest: rightmost placement is independent of pane listing order
+ok 69 - rightmost placement is independent of pane listing order
+  ---
+  duration_ms: 0.088667
+  type: 'test'
+  ...
+# GitRail open skipped tab w1:t1 because an outer-right split is not safe
+# Subtest: automatic ensure skips an unsafe vertical layout without staging or opening
+ok 70 - automatic ensure skips an unsafe vertical layout without staging or opening
+  ---
+  duration_ms: 2.11375
+  type: 'test'
+  ...
+# GitRail open skipped tab w1:t1 because an outer-right split is not safe
+# Subtest: manual open also skips an unsafe vertical layout without rearranging user panes
+ok 71 - manual open also skips an unsafe vertical layout without rearranging user panes
+  ---
+  duration_ms: 1.730125
+  type: 'test'
+  ...
+# Subtest: manual replace retargets an existing rail while ensure adopts it
+ok 72 - manual replace retargets an existing rail while ensure adopts it
+  ---
+  duration_ms: 2.10975
+  type: 'test'
+  ...
+# Subtest: replace aborts instead of duplicating when the owned rail cannot close
+ok 73 - replace aborts instead of duplicating when the owned rail cannot close
+  ---
+  duration_ms: 1.559292
+  type: 'test'
+  ...
+# Subtest: zoomed tabs are unzoomed for replacement and restored afterward
+ok 74 - zoomed tabs are unzoomed for replacement and restored afterward
+  ---
+  duration_ms: 2.701
+  type: 'test'
+  ...
+# Subtest: GitRail Demo panes use entrypoint-specific identity instead of accumulating
+ok 75 - GitRail Demo panes use entrypoint-specific identity instead of accumulating
+  ---
+  duration_ms: 1.856084
+  type: 'test'
+  ...
+# Subtest: a GitRail Demo pane cannot become the main rail's content source
+ok 76 - a GitRail Demo pane cannot become the main rail's content source
+  ---
+  duration_ms: 1.461791
+  type: 'test'
+  ...
+# Subtest: a user pane renamed like GitRail is never treated as plugin-owned
+ok 77 - a user pane renamed like GitRail is never treated as plugin-owned
+  ---
+  duration_ms: 2.707875
+  type: 'test'
+  ...
+# Subtest: ownership inspection failure aborts instead of opening a duplicate rail
+ok 78 - ownership inspection failure aborts instead of opening a duplicate rail
+  ---
+  duration_ms: 1.494417
+  type: 'test'
+  ...
+# Subtest: an invalid plugin-open pane id is never moved into the target tab
+ok 79 - an invalid plugin-open pane id is never moved into the target tab
+  ---
+  duration_ms: 1.622417
+  type: 'test'
+  ...
+# Subtest: closed-tab cleanup removes state and orphan locks only for that tab
+ok 80 - closed-tab cleanup removes state and orphan locks only for that tab
+  ---
+  duration_ms: 1.946084
+  type: 'test'
+  ...
+# Subtest: fixture state is derived by the production provider
+ok 81 - fixture state is derived by the production provider
+  ---
+  duration_ms: 254.999625
+  type: 'test'
+  ...
+# Subtest: inspection leaves HEAD, refs, index, status, and worktree bytes unchanged
+ok 82 - inspection leaves HEAD, refs, index, status, and worktree bytes unchanged
+  ---
+  duration_ms: 389.494292
+  type: 'test'
+  ...
+# Subtest: refresh and commit details use one exact-copy diff scan per comparison
+ok 83 - refresh and commit details use one exact-copy diff scan per comparison
+  ---
+  duration_ms: 260.380125
+  type: 'test'
+  ...
+# Subtest: non-repository directories provide a bounded filesystem Files state
+ok 84 - non-repository directories provide a bounded filesystem Files state
+  ---
+  duration_ms: 14.425125
+  type: 'test'
+  ...
+# Subtest: configured bases must resolve to commits and never silently fall back
+ok 85 - configured bases must resolve to commits and never silently fall back
+  ---
+  duration_ms: 154.374208
+  type: 'test'
+  ...
+# Subtest: Against Raw uses the same merge base as its diff after branches diverge
+ok 86 - Against Raw uses the same merge base as its diff after branches diverge
+  ---
+  duration_ms: 283.191
+  type: 'test'
+  ...
+# Subtest: staged copy identity and colon-prefixed index paths remain exact
+ok 87 - staged copy identity and colon-prefixed index paths remain exact
+  ---
+  duration_ms: 169.828167
+  type: 'test'
+  ...
+# Subtest: exact-revision materialization preserves bounded binary bytes for viewers
+ok 88 - exact-revision materialization preserves bounded binary bytes for viewers
+  ---
+  duration_ms: 54.766125
+  type: 'test'
+  ...
+# Subtest: staged, unstaged, against, commit, untracked, and clean descriptors are independent
+ok 89 - staged, unstaged, against, commit, untracked, and clean descriptors are independent
+  ---
+  duration_ms: 286.418333
+  type: 'test'
+  ...
+# Subtest: raw preview identifies revisions and rejects escaping symlinks
+ok 90 - raw preview identifies revisions and rejects escaping symlinks
+  ---
+  duration_ms: 122.075041
+  type: 'test'
+  ...
+# Subtest: missing worktree content never falls back unless the selected state is deleted
+ok 91 - missing worktree content never falls back unless the selected state is deleted
+  ---
+  duration_ms: 69.774917
+  type: 'test'
+  ...
+# Subtest: provider handles unborn and detached repositories plus unusual renamed paths
+ok 92 - provider handles unborn and detached repositories plus unusual renamed paths
+  ---
+  duration_ms: 440.518875
+  type: 'test'
+  ...
+# Subtest: rename pathspecs preserve identity in every diff scope
+ok 93 - rename pathspecs preserve identity in every diff scope
+  ---
+  duration_ms: 0.133959
+  type: 'test'
+  ...
+# Subtest: rename and copy previews retain Git identity across against, workspace, commit, and staged views
+ok 94 - rename and copy previews retain Git identity across against, workspace, commit, and staged views
+  ---
+  duration_ms: 298.033875
+  type: 'test'
+  ...
+# Subtest: commit history and file details use one explicit first-parent comparison
+ok 95 - commit history and file details use one explicit first-parent comparison
+  ---
+  duration_ms: 327.648958
+  type: 'test'
+  ...
+# Subtest: untracked text line counts match Git numstat semantics
+ok 96 - untracked text line counts match Git numstat semantics
+  ---
+  duration_ms: 153.944792
+  type: 'test'
+  ...
+# Subtest: untracked statistics stop at an aggregate inspection budget
+ok 97 - untracked statistics stop at an aggregate inspection budget
+  ---
+  duration_ms: 190.351042
+  type: 'test'
+  ...
+# Subtest: clean tracked files retain symlink and executable metadata
+ok 98 - clean tracked files retain symlink and executable metadata
+  ---
+  duration_ms: 245.748875
+  type: 'test'
+  ...
+# Subtest: unstaged type changes use worktree mode rather than index mode
+ok 99 - unstaged type changes use worktree mode rather than index mode
+  ---
+  duration_ms: 197.860625
+  type: 'test'
+  ...
+# Subtest: against-base model retains deletion, rename, copy, executable, and symlink metadata
+ok 100 - against-base model retains deletion, rename, copy, executable, and symlink metadata
+  ---
+  duration_ms: 331.507792
+  type: 'test'
+  ...
+# Subtest: unmerged porcelain state remains an explicit conflict in both scopes
+ok 101 - unmerged porcelain state remains an explicit conflict in both scopes
+  ---
+  duration_ms: 334.824542
+  type: 'test'
+  ...
+# Subtest: raw content limits fail safely before reading unbounded data
+ok 102 - raw content limits fail safely before reading unbounded data
+  ---
+  duration_ms: 155.438625
+  type: 'test'
+  ...
+# Subtest: historical and index blobs receive bounded binary and UTF-8 validation without fallback
+ok 103 - historical and index blobs receive bounded binary and UTF-8 validation without fallback
+  ---
+  duration_ms: 344.929417
+  type: 'test'
+  ...
+# Subtest: non-regular worktree entries are rejected without opening a blocking stream
+ok 104 - non-regular worktree entries are rejected without opening a blocking stream
+  ---
+  duration_ms: 23.744209
+  type: 'test'
+  ...
+# Subtest: commit history is bounded while retaining an exact total
+ok 105 - commit history is bounded while retaining an exact total
+  ---
+  duration_ms: 4148.116583
+  type: 'test'
+  ...
+# Subtest: submodule gitlinks remain first-class canonical metadata
+ok 106 - submodule gitlinks remain first-class canonical metadata
+  ---
+  duration_ms: 698.064208
+  type: 'test'
+  ...
+# Subtest: Files view combines base-branch diffs with grey unchanged files
+ok 107 - Files view combines base-branch diffs with grey unchanged files
+  ---
+  duration_ms: 8.055167
+  type: 'test'
+  ...
+# Subtest: canonical clean files preserve tracked mode metadata
+ok 108 - canonical clean files preserve tracked mode metadata
+  ---
+  duration_ms: 0.201125
+  type: 'test'
+  ...
+# Subtest: manifest routes every runtime entrypoint through an absolute shell and launcher
+ok 109 - manifest routes every runtime entrypoint through an absolute shell and launcher
+  ---
+  duration_ms: 2.543417
+  type: 'test'
+  ...
+# Subtest: launcher accepts an absolute Node executable whose path contains spaces
+ok 110 - launcher accepts an absolute Node executable whose path contains spaces
+  ---
+  duration_ms: 124.277166
+  type: 'test'
+  ...
+# Subtest: launcher rejects missing and unsupported Node before running the target
+ok 111 - launcher rejects missing and unsupported Node before running the target
+  ---
+  duration_ms: 198.2315
+  type: 'test'
+  ...
+# Subtest: in-process Node version guard rejects unsupported majors
+ok 112 - in-process Node version guard rejects unsupported majors
+  ---
+  duration_ms: 0.297375
+  type: 'test'
+  ...
+# Subtest: preview state is scoped by workspace, source tab, and entrypoint
+ok 113 - preview state is scoped by workspace, source tab, and entrypoint
+  ---
+  duration_ms: 3.849667
+  type: 'test'
+  ...
+# Subtest: opening a preview records it, renames its tab, and closes only a verified stale preview
+ok 114 - opening a preview records it, renames its tab, and closes only a verified stale preview
+  ---
+  duration_ms: 4.0755
+  type: 'test'
+  ...
+# Subtest: reused user pane id is never closed from stale preview state
+ok 115 - reused user pane id is never closed from stale preview state
+  ---
+  duration_ms: 1.796458
+  type: 'test'
+  ...
+# Subtest: wrong workspace is never closed from stale preview state
+ok 116 - wrong workspace is never closed from stale preview state
+  ---
+  duration_ms: 1.6455
+  type: 'test'
+  ...
+# Subtest: unrelated process is never closed from stale preview state
+ok 117 - unrelated process is never closed from stale preview state
+  ---
+  duration_ms: 2.133792
+  type: 'test'
+  ...
+# Subtest: same-named script from another checkout is never closed from stale preview state
+ok 118 - same-named script from another checkout is never closed from stale preview state
+  ---
+  duration_ms: 1.471959
+  type: 'test'
+  ...
+# Subtest: inspection failure leaves the old pane open without hiding the successful new preview
+ok 119 - inspection failure leaves the old pane open without hiding the successful new preview
+  ---
+  duration_ms: 1.64875
+  type: 'test'
+  ...
+# Subtest: malformed open response does not overwrite existing preview ownership
+ok 120 - malformed open response does not overwrite existing preview ownership
+  ---
+  duration_ms: 1.5025
+  type: 'test'
+  ...
+# Subtest: missing stale panes are discarded without a destructive close
+ok 121 - missing stale panes are discarded without a destructive close
+  ---
+  duration_ms: 1.553959
+  type: 'test'
+  ...
+# Subtest: open failure preserves stale ownership and rename failure is only a warning
+ok 122 - open failure preserves stale ownership and rename failure is only a warning
+  ---
+  duration_ms: 1.831083
+  type: 'test'
+  ...
+# Subtest: an unwritable preview state root fails inside the guarded lifecycle before opening a pane
+ok 123 - an unwritable preview state root fails inside the guarded lifecycle before opening a pane
+  ---
+  duration_ms: 1.376625
+  type: 'test'
+  ...
+# Subtest: preview search normalizes content once and narrows prior candidates
+ok 124 - preview search normalizes content once and narrows prior candidates
+  ---
+  duration_ms: 1.6495
+  type: 'test'
+  ...
+# Subtest: cached search results retain display columns without another position pass
+ok 125 - cached search results retain display columns without another position pass
+  ---
+  duration_ms: 0.316417
+  type: 'test'
+  ...
+# Subtest: preview search restores cached prefixes, handles Unicode, and resets by content
+ok 126 - preview search restores cached prefixes, handles Unicode, and resets by content
+  ---
+  duration_ms: 0.1195
+  type: 'test'
+  ...
+# Subtest: preview search bounds query and retained candidate memory
+ok 127 - preview search bounds query and retained candidate memory
+  ---
+  duration_ms: 960.87875
+  type: 'test'
+  ...
+# Subtest: process stdout remains text by default and can preserve exact bytes
+ok 128 - process stdout remains text by default and can preserve exact bytes
+  ---
+  duration_ms: 111.495667
+  type: 'test'
+  ...
+# Subtest: process input can be supplied as exact bytes
+ok 129 - process input can be supplied as exact bytes
+  ---
+  duration_ms: 56.660292
+  type: 'test'
+  ...
+# Subtest: timeouts settle without waiting for descendants that inherited output pipes
+ok 130 - timeouts settle without waiting for descendants that inherited output pipes
+  ---
+  duration_ms: 51.89125
+  type: 'test'
+  ...
+# Subtest: timeouts terminate descendants in the command process group
+ok 131 - timeouts terminate descendants in the command process group
+  ---
+  duration_ms: 555.972708
+  type: 'test'
+  ...
+# Subtest: abort signals terminate and await the command process group
+ok 132 - abort signals terminate and await the command process group
+  ---
+  duration_ms: 554.608125
+  type: 'test'
+  ...
+# Subtest: archive member verification rejects local-only and removed artifacts
+ok 133 - archive member verification rejects local-only and removed artifacts
+  ---
+  duration_ms: 1.083458
+  type: 'test'
+  ...
+# Subtest: release evidence binds eight hashed local logs to one candidate
+ok 134 - release evidence binds eight hashed local logs to one candidate
+  ---
+  duration_ms: 18.936833
+  type: 'test'
+  ...
+# Subtest: release evidence rejects failed, stale, mismatched, and malformed local records
+ok 135 - release evidence rejects failed, stale, mismatched, and malformed local records
+  ---
+  duration_ms: 8.590833
+  type: 'test'
+  ...
+# Subtest: release screenshots have the declared dimensions and resolvable source commits
+ok 136 - release screenshots have the declared dimensions and resolvable source commits
+  ---
+  duration_ms: 2.143958
+  type: 'test'
+  ...
+# Subtest: demo snapshot is coherent at 25 columns
+ok 137 - demo snapshot is coherent at 25 columns
+  ---
+  duration_ms: 582.286
+  type: 'test'
+  ...
+# Subtest: demo snapshot is coherent at 36 columns
+ok 138 - demo snapshot is coherent at 36 columns
+  ---
+  duration_ms: 492.832667
+  type: 'test'
+  ...
+# Subtest: demo snapshot is coherent at 52 columns
+ok 139 - demo snapshot is coherent at 52 columns
+  ---
+  duration_ms: 484.499875
+  type: 'test'
+  ...
+# Subtest: demo snapshot is coherent at 100 columns
+ok 140 - demo snapshot is coherent at 100 columns
+  ---
+  duration_ms: 428.769958
+  type: 'test'
+  ...
+# Subtest: demo snapshot ignores ambient user configuration and GitRail overrides
+ok 141 - demo snapshot ignores ambient user configuration and GitRail overrides
+  ---
+  duration_ms: 391.667834
+  type: 'test'
+  ...
+# Subtest: Files view puts repository-root files after folders at 25 columns
+ok 142 - Files view puts repository-root files after folders at 25 columns
+  ---
+  duration_ms: 399.5465
+  type: 'test'
+  ...
+# Subtest: Files view puts repository-root files after folders at 100 columns
+ok 143 - Files view puts repository-root files after folders at 100 columns
+  ---
+  duration_ms: 411.68475
+  type: 'test'
+  ...
+# Subtest: production Files repaint materializes only the 20k-path viewport
+ok 144 - production Files repaint materializes only the 20k-path viewport
+  ---
+  duration_ms: 1403.340042
+  type: 'test'
+  ...
+# Subtest: keyboard navigation reaches the first, middle, and final 20k-path Files rows
+ok 145 - keyboard navigation reaches the first, middle, and final 20k-path Files rows
+  ---
+  duration_ms: 1452.414625
+  type: 'test'
+  ...
+# Subtest: Changes search includes commit history summaries
+ok 146 - Changes search includes commit history summaries
+  ---
+  duration_ms: 458.169791
+  type: 'test'
+  ...
+# Subtest: commit-history search filters expanded commit children
+ok 147 - commit-history search filters expanded commit children
+  ---
+  duration_ms: 412.686041
+  type: 'test'
+  ...
+# Subtest: large repositories fully render Files while Changes stays paginated
+ok 148 - large repositories fully render Files while Changes stays paginated
+  ---
+  duration_ms: 611.841458
+  type: 'test'
+  ...
+# Subtest: sidebar rows stay within terminal width for wide filenames
+ok 149 - sidebar rows stay within terminal width for wide filenames
+  ---
+  duration_ms: 253.03925
+  type: 'test'
+  ...
+# Subtest: clean Changes view states that the worktree is clean
+ok 150 - clean Changes view states that the worktree is clean
+  ---
+  duration_ms: 287.032583
+  type: 'test'
+  ...
+# Subtest: non-repository Files stays browsable with one neutral file icon
+ok 151 - non-repository Files stays browsable with one neutral file icon
+  ---
+  duration_ms: 295.913292
+  type: 'test'
+  ...
+# Subtest: keyboard can expand a commit-summary search result
+ok 152 - keyboard can expand a commit-summary search result
+  ---
+  duration_ms: 409.995667
+  type: 'test'
+  ...
+# Subtest: help overlay explains keys and icons, scrolls, and returns to a highlighted selection
+ok 153 - help overlay explains keys and icons, scrolls, and returns to a highlighted selection
+  ---
+  duration_ms: 658.449417
+  type: 'test'
+  ...
+# Subtest: Escape clears a keyboard selection before a second press closes the rail
+ok 154 - Escape clears a keyboard selection before a second press closes the rail
+  ---
+  duration_ms: 461.530458
+  type: 'test'
+  ...
+# Subtest: fatal rail errors restore terminal modes before exiting nonzero
+ok 155 - fatal rail errors restore terminal modes before exiting nonzero
+  ---
+  duration_ms: 495.537166
+  type: 'test'
+  ...
+# Subtest: preview processes coalesced search input, advances matches, and exposes horizontal navigation
+ok 156 - preview processes coalesced search input, advances matches, and exposes horizontal navigation
+  ---
+  duration_ms: 773.632958
+  type: 'test'
+  ...
+# Subtest: embedded Markdown rendering stays inside the pageable preview viewport
+ok 157 - embedded Markdown rendering stays inside the pageable preview viewport
+  ---
+  duration_ms: 373.039042
+  type: 'test'
+  ...
+# Subtest: a hostile repository config cannot auto-launch a preview executable
+ok 158 - a hostile repository config cannot auto-launch a preview executable
+  ---
+  duration_ms: 120.028542
+  type: 'test'
+  ...
+# Subtest: embedded Glow renders the selected Markdown bytes through stdin
+ok 159 - embedded Glow renders the selected Markdown bytes through stdin
+  ---
+  duration_ms: 300.615958
+  type: 'test'
+  ...
+# Subtest: the built-in Markdown action auto-opens Glow TUI and action 3 opens it again
+ok 160 - the built-in Markdown action auto-opens Glow TUI and action 3 opens it again
+  ---
+  duration_ms: 299.909792
+  type: 'test'
+  ...
+# Subtest: preview reports repaint latency for a large allowed line count
+ok 161 - preview reports repaint latency for a large allowed line count
+  ---
+  duration_ms: 1884.488208
+  type: 'test'
+  ...
+# 75,000-line preview repaint: 19ms
+# Subtest: preview avoids wrapped-row amplification for a pathological single line
+ok 162 - preview avoids wrapped-row amplification for a pathological single line
+  ---
+  duration_ms: 190.649458
+  type: 'test'
+  ...
+# Subtest: preview rejects pathological line counts before rendered-memory amplification
+ok 163 - preview rejects pathological line counts before rendered-memory amplification
+  ---
+  duration_ms: 181.325958
+  type: 'test'
+  ...
+# Subtest: terminal text blocks OSC52 and every terminal control family
+ok 164 - terminal text blocks OSC52 and every terminal control family
+  ---
+  duration_ms: 0.973125
+  type: 'test'
+  ...
+# Subtest: clean Files metadata opens Raw even with a workspace descriptor
+ok 165 - clean Files metadata opens Raw even with a workspace descriptor
+  ---
+  duration_ms: 0.154666
+  type: 'test'
+  ...
+# Subtest: commit preview context distinguishes first-parent and root comparisons
+ok 166 - commit preview context distinguishes first-parent and root comparisons
+  ---
+  duration_ms: 0.0575
+  type: 'test'
+  ...
+# Subtest: preview tab names use a safe capped basename
+ok 167 - preview tab names use a safe capped basename
+  ---
+  duration_ms: 0.521417
+  type: 'test'
+  ...
+# Subtest: terminal layout helpers measure, truncate, pad, and compact by display columns
+ok 168 - terminal layout helpers measure, truncate, pad, and compact by display columns
+  ---
+  duration_ms: 0.363833
+  type: 'test'
+  ...
+# Subtest: preview wrapping preserves gutters, ANSI styles, Unicode width, and source rows
+ok 169 - preview wrapping preserves gutters, ANSI styles, Unicode width, and source rows
+  ---
+  duration_ms: 1.169833
+  type: 'test'
+  ...
+# Subtest: embedded renderer output keeps only SGR styling
+ok 170 - embedded renderer output keeps only SGR styling
+  ---
+  duration_ms: 0.101875
+  type: 'test'
+  ...
+# Subtest: terminal input decoder preserves ordered coalesced keyboard, CSI, and mouse events
+ok 171 - terminal input decoder preserves ordered coalesced keyboard, CSI, and mouse events
+  ---
+  duration_ms: 11.242792
+  type: 'test'
+  ...
+# Subtest: summary-only commit matches can expand to meaningful file content
+ok 172 - summary-only commit matches can expand to meaningful file content
+  ---
+  duration_ms: 0.150208
+  type: 'test'
+  ...
+# Subtest: poll timers reject corrupted intervals independently of configuration
+ok 173 - poll timers reject corrupted intervals independently of configuration
+  ---
+  duration_ms: 0.07775
+  type: 'test'
+  ...
+# Subtest: filesystem invalidations coalesce and enforce a minimum refresh cadence
+ok 174 - filesystem invalidations coalesce and enforce a minimum refresh cadence
+  ---
+  duration_ms: 0.195209
+  type: 'test'
+  ...
+# Subtest: a successful refresh clears only refresh failures
+ok 175 - a successful refresh clears only refresh failures
+  ---
+  duration_ms: 0.054208
+  type: 'test'
+  ...
+# Subtest: SGR mouse reports can be removed without leaking bytes into search text
+ok 176 - SGR mouse reports can be removed without leaking bytes into search text
+  ---
+  duration_ms: 0.082333
+  type: 'test'
+  ...
+# Subtest: startup provider failures become an actionable render state
+ok 177 - startup provider failures become an actionable render state
+  ---
+  duration_ms: 0.077625
+  type: 'test'
+  ...
+# Subtest: sidebar snapshots cannot emit OSC52 from repository and filename data
+ok 178 - sidebar snapshots cannot emit OSC52 from repository and filename data
+  ---
+  duration_ms: 265.997625
+  type: 'test'
+  ...
+# Subtest: recovery polling follows repository transitions in either direction
+ok 179 - recovery polling follows repository transitions in either direction
+  ---
+  duration_ms: 0.647959
+  type: 'test'
+  ...
+# Subtest: preview requests serialize and skip superseded queued selections
+ok 180 - preview requests serialize and skip superseded queued selections
+  ---
+  duration_ms: 0.496334
+  type: 'test'
+  ...
+# Subtest: keyboard selection reveal uses rendered row position
+ok 181 - keyboard selection reveal uses rendered row position
+  ---
+  duration_ms: 0.080625
+  type: 'test'
+  ...
+# Subtest: compact commit ages preserve value and unit
+ok 182 - compact commit ages preserve value and unit
+  ---
+  duration_ms: 0.857708
+  type: 'test'
+  ...
+# Subtest: root files sort after every folder group
+ok 183 - root files sort after every folder group
+  ---
+  duration_ms: 7.241541
+  type: 'test'
+  ...
+# Subtest: uninstall closes only live pane instances owned by this checkout before unlinking
+ok 184 - uninstall closes only live pane instances owned by this checkout before unlinking
+  ---
+  duration_ms: 1.647333
+  type: 'test'
+  ...
+# Subtest: uninstall fails closed on a reused or spoofed GitRail pane
+ok 185 - uninstall fails closed on a reused or spoofed GitRail pane
+  ---
+  duration_ms: 0.453125
+  type: 'test'
+  ...
+1..185
+# tests 185
+# suites 0
+# pass 185
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39873.314459
+# start of coverage report
+# ------------------------------------------------------------------------------------------------
+# file                        | line % | branch % | funcs % | uncovered lines
+# ------------------------------------------------------------------------------------------------
+# src                         |        |          |         | 
+#  config.mjs                 |  97.04 |    91.19 |   96.43 | 65-66 69-70 140-141 155-156
+#  debug-log.mjs              |  46.67 |    66.67 |   50.00 | 7-14
+#  diff-view.mjs              |  86.67 |    82.35 |  100.00 | 45-48 67-72
+#  files-view-model.mjs       | 100.00 |   100.00 |  100.00 | 
+#  fixture.mjs                | 100.00 |   100.00 |  100.00 | 
+#  git-parsers.mjs            | 100.00 |    98.65 |  100.00 | 
+#  git-provider.mjs           |  98.48 |    85.53 |  100.00 | 66-67 205-206 301 333-334
+#  git-watch.mjs              | 100.00 |    87.50 |  100.00 | 
+#  herdr-context.mjs          |  96.88 |    52.17 |  100.00 | 62-63
+#  herdr-layout.mjs           | 100.00 |    71.43 |   83.33 | 
+#  herdr-pane-state.mjs       |  90.27 |    71.70 |   95.00 | 72-73 81-82 113 115 168-174 180-184
+#  model.mjs                  |  82.50 |    84.62 |   81.82 | 55-65 75-77
+#  node-version.mjs           | 100.00 |   100.00 |  100.00 | 
+#  preview-pane-lifecycle.mjs |  91.04 |    78.95 |  100.00 | 84-95
+#  preview-provider.mjs       |  95.30 |    84.35 |  100.00 | 60 92 158 180-186 221
+#  preview-search.mjs         | 100.00 |    87.50 |  100.00 | 
+#  process.mjs                |  92.62 |    89.80 |   84.21 | 28-30 73 83-86 111-112 136
+#  terminal-ui.mjs            |  98.03 |    88.32 |   92.50 | 133-135 186-188 301-302
+#  tui-format.mjs             | 100.00 |    66.67 |  100.00 | 
+# ------------------------------------------------------------------------------------------------
+# all files                   |  95.76 |    86.42 |   95.08 | 
+# ------------------------------------------------------------------------------------------------
+# end of coverage report
+
+> herdr-gitrail@0.1.0 snapshot
+> node scripts/git-rail.mjs --demo --snapshot --width 52 --height 46
+
+ [1mgitrail-fixture[0m                                    
+  [38;2;139;139;139m⑂ feature/sidebar[0m                                 
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[48;2;45;41;34m[38;2;214;176;91m[1m CHANGES                  [0m[2m FILES                    [0m
+[48;2;45;41;34m[2m ⌕ Search changes & commits…                        [0m
+ [38;2;214;176;91m≣ Folders[0m   [38;2;139;139;139m↻ Refresh[0m                              
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[38;2;214;176;91m▏[0m› Against main  [2m2[0m                                  
+ › Commits  [2m1[0m                                       
+ ⌄ Staged  [2m1[0m                                        
+[38;2;139;139;139m ⌄ src[0m [2m1[0m                                            
+  [38;2;84;84;84m└─[0m [38;2;229;180;84m⊡[0m status.mjs                              [38;2;91;190;112m+2[0m [38;2;224;108;117m−1[0m
+ ⌄ Unstaged  [2m1[0m                                      
+[38;2;139;139;139m ⌄ src[0m [2m1[0m                                            
+  [38;2;84;84;84m└─[0m [38;2;229;180;84m⊡[0m status.mjs                              [38;2;91;190;112m+2[0m [38;2;224;108;117m−1[0m
+ ⌄ Untracked  [2m2[0m                                     
+[38;2;139;139;139m ⌄ assets[0m [2m1[0m                                         
+  [38;2;84;84;84m└─[0m [38;2;91;190;112m?[0m binary.dat                             [38;2;190;132;220mbinary[0m
+[38;2;139;139;139m ⌄ notes[0m [2m1[0m                                          
+  [38;2;84;84;84m└─[0m [38;2;91;190;112m?[0m production ready.md                        [38;2;91;190;112m+3[0m
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[2mj/k select · Enter open · ? help · / search · q[0m     
+
+> herdr-gitrail@0.1.0 artifact:verify
+> node scripts/verify-artifact.mjs
+
+Verified 5 manifest runtime files
+v22.23.2

@@ -1,0 +1,300 @@
+npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+
+added 118 packages, and audited 119 packages in 652ms
+
+33 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> herdr-gitrail@0.1.0 check
+> npm run lint && npm run test:coverage
+
+
+> herdr-gitrail@0.1.0 lint
+> node scripts/lint.mjs && eslint . && knip --include exports
+
+
+> herdr-gitrail@0.1.0 test:coverage
+> node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include='src/**/*.mjs' --test-coverage-lines=95 --test-coverage-branches=86 --test-coverage-functions=95
+
+✔ tab creation uses the event tab instead of the globally focused tab (0.884125ms)
+✔ startup reconciliation chooses one non-GitRail pane per tab (0.2865ms)
+✔ event reconciliation filters to the created tab (0.074667ms)
+✔ legacy layout-staging tabs never trigger auto-open (0.048291ms)
+✔ bounded sweep caps workers and preserves mixed partial results (0.814125ms)
+✔ bounded sweep does not dequeue work after its global deadline (0.114708ms)
+✔ bounded sweep cancels every target when the deadline has already expired (0.093792ms)
+✔ bounded sweep reports both active and queued jobs as deadline-cancelled (0.155417ms)
+✔ auto-open target gives its process group the remaining deadline and recovery grace (1.733125ms)
+✔ the global auto-open deadline starts before Herdr discovery (3.724875ms)
+✔ only user configuration can disable automatic Herdr opening (1.714ms)
+✔ non-Git legacy labels never authorize closing a user pane (188.339667ms)
+✔ Herdr launch keeps plugin code rooted while passing the selected repository explicitly (288.947ms)
+✔ live pane owns the single product title (2.858958ms)
+✔ Herdr opens GitRail for restored and newly created tabs (0.533959ms)
+✔ Herdr exposes a current-tab GitRail toggle action (0.336834ms)
+✔ file previews open in a dedicated Herdr tab (0.517375ms)
+✔ preview scrolling repaints in place without clearing the screen (0.506959ms)
+✔ manual refresh confirmation is transient (0.352583ms)
+✔ configuration validates version, launch mode, and refresh bounds (0.790458ms)
+✔ the shipped example is governed by runtime validation alone (0.389833ms)
+✔ configuration requires a version and rejects nested unknown keys (0.245542ms)
+✔ viewer actions resolve conditionally by selected filename (0.522166ms)
+✔ viewer executable preflight detects commands without invoking them (1.802916ms)
+✔ configuration rejects mistyped structured values (0.091459ms)
+✔ user configuration merges by key and environment wins (1.716959ms)
+✔ an explicit Glow TUI rule is preserved (1.654875ms)
+✔ environment overrides do not mutate built-in defaults (0.808417ms)
+✔ editor integration is optional and EDITOR remains a fallback (0.86125ms)
+✔ invalid environment overrides report errors without replacing valid defaults (0.719417ms)
+✔ out-of-range polling overrides preserve a user interval (1.529875ms)
+✔ structured file diff removes Git plumbing and tracks both line numbers (1.497458ms)
+✔ structured file diff preserves meaningful file metadata (0.094916ms)
+✔ structured file diff parses combined conflict hunks (0.226ms)
+✔ diff rows neutralize repository-controlled terminal sequences (0.248917ms)
+✔ structured diff parsing strips Git color without losing hunk semantics (0.081375ms)
+✔ security policy has no fictional contact or response-time promise (2.543792ms)
+✔ documentation states the eventual refresh and user-only configuration contracts (0.7085ms)
+✔ public installation and release evidence instructions enforce the candidate gates (1.180708ms)
+✔ the default local check enforces coverage (0.353ms)
+✔ live release cleanup is isolated from the operator's Herdr installation (0.339792ms)
+✔ sealed release logs are not hidden by the general log ignore (0.281375ms)
+✔ 20k-path files model materializes only the viewport at supported widths (148.094042ms)
+✔ commit machine formats preserve control characters and unambiguous paths (1.017166ms)
+✔ porcelain v2 parser preserves spaces, tabs, unicode, renames, and conflicts (0.173375ms)
+✔ combined raw and numstat output preserves metadata, stats, and unusual paths (0.269667ms)
+✔ the release witness can isolate the recovery poll from filesystem watchers (0.439209ms)
+✔ git watcher resolves and deduplicates per-worktree and common git directories (1.703ms)
+✔ git watcher never runs Git for an empty repository root (0.09225ms)
+✔ test/helpers/environment.mjs (33.73975ms)
+✔ content selection follows each tab's focused pane and ignores GitRail panes (0.937916ms)
+✔ live cwd resolution is scoped to the rail's own tab (0.65ms)
+✔ a focused GitRail Demo never becomes the main rail's content source (0.059375ms)
+✔ a stored GitRail Demo source is discarded in favor of real tab content (0.123ms)
+✔ a moved rail resolves cwd from its current workspace instead of its launch workspace (0.150459ms)
+✔ configured sidebar width shrinks a new right split to exact columns (0.528791ms)
+✔ configured width never takes more than half a narrow split (0.071166ms)
+✔ configured width respects Herdr's minimum split ratio (0.042584ms)
+✔ sidebar resize uses Herdr layout and pane APIs without changing focus (0.527625ms)
+✔ orphaned pane locks are recovered instead of suppressing auto-open (7.5955ms)
+✔ a live lock cannot be age-evicted or released by an earlier owner (104.994958ms)
+✔ an orphaned reclaimer cannot permanently wedge a pane lock (4.477417ms)
+✔ existing current rails are adopted, deduplicated, and never reopened from themselves (4.012209ms)
+✔ toggle closes only the verified GitRail rail and clears its tab state (2.005125ms)
+✔ toggle opens a rail when the current tab has none (1.832792ms)
+✔ automatic ensure uses a safe outer-right split without layout staging (2.160292ms)
+✔ legacy rails are replaced at the right edge using the tab-focused source cwd (1.877875ms)
+✔ automatic ensure adopts a middle rail without rearranging user panes (1.78025ms)
+✔ rightmost placement is independent of pane listing order (0.08025ms)
+GitRail open skipped tab w1:t1 because an outer-right split is not safe
+✔ automatic ensure skips an unsafe vertical layout without staging or opening (1.537917ms)
+GitRail open skipped tab w1:t1 because an outer-right split is not safe
+✔ manual open also skips an unsafe vertical layout without rearranging user panes (1.314083ms)
+✔ manual replace retargets an existing rail while ensure adopts it (1.812583ms)
+✔ replace aborts instead of duplicating when the owned rail cannot close (1.62325ms)
+✔ zoomed tabs are unzoomed for replacement and restored afterward (2.468167ms)
+✔ GitRail Demo panes use entrypoint-specific identity instead of accumulating (1.657042ms)
+✔ a GitRail Demo pane cannot become the main rail's content source (1.184416ms)
+✔ a user pane renamed like GitRail is never treated as plugin-owned (1.797166ms)
+✔ ownership inspection failure aborts instead of opening a duplicate rail (1.408458ms)
+✔ an invalid plugin-open pane id is never moved into the target tab (1.339208ms)
+✔ closed-tab cleanup removes state and orphan locks only for that tab (2.04875ms)
+✔ fixture state is derived by the production provider (263.729542ms)
+✔ inspection leaves HEAD, refs, index, status, and worktree bytes unchanged (316.482334ms)
+✔ refresh and commit details use one exact-copy diff scan per comparison (239.511625ms)
+✔ non-repository directories provide a bounded filesystem Files state (15.67925ms)
+✔ configured bases must resolve to commits and never silently fall back (149.110667ms)
+✔ Against Raw uses the same merge base as its diff after branches diverge (270.963917ms)
+✔ staged copy identity and colon-prefixed index paths remain exact (167.0825ms)
+✔ exact-revision materialization preserves bounded binary bytes for viewers (51.621334ms)
+✔ staged, unstaged, against, commit, untracked, and clean descriptors are independent (286.659875ms)
+✔ raw preview identifies revisions and rejects escaping symlinks (119.382334ms)
+✔ missing worktree content never falls back unless the selected state is deleted (65.930334ms)
+✔ provider handles unborn and detached repositories plus unusual renamed paths (461.353083ms)
+✔ rename pathspecs preserve identity in every diff scope (0.204166ms)
+✔ rename and copy previews retain Git identity across against, workspace, commit, and staged views (459.081167ms)
+✔ commit history and file details use one explicit first-parent comparison (381.476209ms)
+✔ untracked text line counts match Git numstat semantics (258.904292ms)
+✔ untracked statistics stop at an aggregate inspection budget (201.818333ms)
+✔ clean tracked files retain symlink and executable metadata (188.48525ms)
+✔ unstaged type changes use worktree mode rather than index mode (181.156959ms)
+✔ against-base model retains deletion, rename, copy, executable, and symlink metadata (209.470333ms)
+✔ unmerged porcelain state remains an explicit conflict in both scopes (231.767667ms)
+✔ raw content limits fail safely before reading unbounded data (113.436042ms)
+✔ historical and index blobs receive bounded binary and UTF-8 validation without fallback (283.698083ms)
+✔ non-regular worktree entries are rejected without opening a blocking stream (21.596ms)
+✔ commit history is bounded while retaining an exact total (4321.373667ms)
+✔ submodule gitlinks remain first-class canonical metadata (642.662583ms)
+✔ Files view combines base-branch diffs with grey unchanged files (7.939917ms)
+✔ canonical clean files preserve tracked mode metadata (0.149667ms)
+✔ manifest routes every runtime entrypoint through an absolute shell and launcher (2.124416ms)
+✔ launcher accepts an absolute Node executable whose path contains spaces (87.718125ms)
+✔ launcher rejects missing and unsupported Node before running the target (184.676792ms)
+✔ in-process Node version guard rejects unsupported majors (0.169958ms)
+✔ preview state is scoped by workspace, source tab, and entrypoint (2.563166ms)
+✔ opening a preview records it, renames its tab, and closes only a verified stale preview (3.526292ms)
+✔ reused user pane id is never closed from stale preview state (1.731583ms)
+✔ wrong workspace is never closed from stale preview state (1.645542ms)
+✔ unrelated process is never closed from stale preview state (1.429834ms)
+✔ same-named script from another checkout is never closed from stale preview state (1.793791ms)
+✔ inspection failure leaves the old pane open without hiding the successful new preview (1.730125ms)
+✔ malformed open response does not overwrite existing preview ownership (1.490875ms)
+✔ missing stale panes are discarded without a destructive close (1.409916ms)
+✔ open failure preserves stale ownership and rename failure is only a warning (1.6805ms)
+✔ an unwritable preview state root fails inside the guarded lifecycle before opening a pane (0.606916ms)
+✔ preview search normalizes content once and narrows prior candidates (1.224ms)
+✔ cached search results retain display columns without another position pass (0.300125ms)
+✔ preview search restores cached prefixes, handles Unicode, and resets by content (0.122375ms)
+✔ preview search bounds query and retained candidate memory (990.717708ms)
+✔ process stdout remains text by default and can preserve exact bytes (69.499584ms)
+✔ process input can be supplied as exact bytes (34.945041ms)
+✔ timeouts settle without waiting for descendants that inherited output pipes (51.964125ms)
+✔ timeouts terminate descendants in the command process group (553.819917ms)
+✔ abort signals terminate and await the command process group (555.30725ms)
+✔ archive member verification rejects local-only and removed artifacts (1.28ms)
+✔ release evidence binds eight hashed local logs to one candidate (9.890542ms)
+✔ release evidence rejects failed, stale, mismatched, and malformed local records (8.260416ms)
+✔ release screenshots have the declared dimensions and resolvable source commits (1.301958ms)
+✔ demo snapshot is coherent at 25 columns (394.82325ms)
+✔ demo snapshot is coherent at 36 columns (462.214875ms)
+✔ demo snapshot is coherent at 52 columns (417.869541ms)
+✔ demo snapshot is coherent at 100 columns (375.8095ms)
+✔ demo snapshot ignores ambient user configuration and GitRail overrides (371.320583ms)
+✔ Files view puts repository-root files after folders at 25 columns (381.102958ms)
+✔ Files view puts repository-root files after folders at 100 columns (393.429542ms)
+✔ production Files repaint materializes only the 20k-path viewport (1355.522584ms)
+✔ keyboard navigation reaches the first, middle, and final 20k-path Files rows (1352.109084ms)
+✔ Changes search includes commit history summaries (373.55325ms)
+✔ commit-history search filters expanded commit children (411.306625ms)
+✔ large repositories fully render Files while Changes stays paginated (558.579375ms)
+✔ sidebar rows stay within terminal width for wide filenames (252.267458ms)
+✔ clean Changes view states that the worktree is clean (274.999666ms)
+✔ non-repository Files stays browsable with one neutral file icon (241.328708ms)
+✔ keyboard can expand a commit-summary search result (391.612167ms)
+✔ help overlay explains keys and icons, scrolls, and returns to a highlighted selection (596.903167ms)
+✔ Escape clears a keyboard selection before a second press closes the rail (400.605958ms)
+✔ fatal rail errors restore terminal modes before exiting nonzero (355.070458ms)
+✔ preview processes coalesced search input, advances matches, and exposes horizontal navigation (765.659292ms)
+✔ embedded Markdown rendering stays inside the pageable preview viewport (343.835291ms)
+✔ a hostile repository config cannot auto-launch a preview executable (58.967209ms)
+✔ embedded Glow renders the selected Markdown bytes through stdin (247.431459ms)
+✔ the built-in Markdown action auto-opens Glow TUI and action 3 opens it again (259.569584ms)
+✔ preview reports repaint latency for a large allowed line count (1542.926042ms)
+ℹ 75,000-line preview repaint: 19ms
+✔ preview avoids wrapped-row amplification for a pathological single line (135.477042ms)
+✔ preview rejects pathological line counts before rendered-memory amplification (183.71775ms)
+✔ terminal text blocks OSC52 and every terminal control family (0.786083ms)
+✔ clean Files metadata opens Raw even with a workspace descriptor (0.092958ms)
+✔ commit preview context distinguishes first-parent and root comparisons (0.054375ms)
+✔ preview tab names use a safe capped basename (1.242542ms)
+✔ terminal layout helpers measure, truncate, pad, and compact by display columns (0.478917ms)
+✔ preview wrapping preserves gutters, ANSI styles, Unicode width, and source rows (0.99775ms)
+✔ embedded renderer output keeps only SGR styling (0.118833ms)
+✔ terminal input decoder preserves ordered coalesced keyboard, CSI, and mouse events (10.605083ms)
+✔ summary-only commit matches can expand to meaningful file content (0.213417ms)
+✔ poll timers reject corrupted intervals independently of configuration (0.108458ms)
+✔ filesystem invalidations coalesce and enforce a minimum refresh cadence (0.148417ms)
+✔ a successful refresh clears only refresh failures (0.048542ms)
+✔ SGR mouse reports can be removed without leaking bytes into search text (0.090166ms)
+✔ startup provider failures become an actionable render state (0.117541ms)
+✔ sidebar snapshots cannot emit OSC52 from repository and filename data (267.214667ms)
+✔ recovery polling follows repository transitions in either direction (0.491208ms)
+✔ preview requests serialize and skip superseded queued selections (0.272166ms)
+✔ keyboard selection reveal uses rendered row position (0.073917ms)
+✔ compact commit ages preserve value and unit (0.6325ms)
+✔ root files sort after every folder group (7.210625ms)
+✔ uninstall closes only live pane instances owned by this checkout before unlinking (1.122334ms)
+✔ uninstall fails closed on a reused or spoofed GitRail pane (0.433417ms)
+ℹ tests 185
+ℹ suites 0
+ℹ pass 185
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37373.175334
+ℹ start of coverage report
+ℹ ------------------------------------------------------------------------------------------------
+ℹ file                        | line % | branch % | funcs % | uncovered lines
+ℹ ------------------------------------------------------------------------------------------------
+ℹ src                         |        |          |         | 
+ℹ  config.mjs                 |  97.04 |    91.19 |   96.43 | 65-66 69-70 140-141 155-156
+ℹ  debug-log.mjs              |  46.67 |    66.67 |   50.00 | 7-14
+ℹ  diff-view.mjs              |  86.67 |    82.35 |  100.00 | 45-48 67-72
+ℹ  files-view-model.mjs       | 100.00 |   100.00 |  100.00 | 
+ℹ  fixture.mjs                | 100.00 |   100.00 |  100.00 | 
+ℹ  git-parsers.mjs            | 100.00 |    98.65 |  100.00 | 
+ℹ  git-provider.mjs           |  98.48 |    85.53 |  100.00 | 66-67 205-206 301 333-334
+ℹ  git-watch.mjs              | 100.00 |    87.50 |  100.00 | 
+ℹ  herdr-context.mjs          |  96.88 |    52.17 |  100.00 | 62-63
+ℹ  herdr-layout.mjs           | 100.00 |    71.43 |   83.33 | 
+ℹ  herdr-pane-state.mjs       |  90.27 |    71.70 |   95.00 | 72-73 81-82 113 115 168-174 180-184
+ℹ  model.mjs                  |  82.50 |    84.62 |   81.82 | 55-65 75-77
+ℹ  node-version.mjs           | 100.00 |   100.00 |  100.00 | 
+ℹ  preview-pane-lifecycle.mjs |  91.04 |    78.95 |  100.00 | 84-95
+ℹ  preview-provider.mjs       |  95.30 |    84.35 |  100.00 | 60 92 158 180-186 221
+ℹ  preview-search.mjs         | 100.00 |    87.50 |  100.00 | 
+ℹ  process.mjs                |  92.62 |    89.80 |   84.21 | 28-30 73 83-86 111-112 136
+ℹ  terminal-ui.mjs            |  98.03 |    88.32 |   92.50 | 133-135 186-188 301-302
+ℹ  tui-format.mjs             | 100.00 |    66.67 |  100.00 | 
+ℹ ------------------------------------------------------------------------------------------------
+ℹ all files                   |  95.76 |    86.42 |   95.08 | 
+ℹ ------------------------------------------------------------------------------------------------
+ℹ end of coverage report
+
+> herdr-gitrail@0.1.0 snapshot
+> node scripts/git-rail.mjs --demo --snapshot --width 52 --height 46
+
+ [1mgitrail-fixture[0m                                    
+  [38;2;139;139;139m⑂ feature/sidebar[0m                                 
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[48;2;45;41;34m[38;2;214;176;91m[1m CHANGES                  [0m[2m FILES                    [0m
+[48;2;45;41;34m[2m ⌕ Search changes & commits…                        [0m
+ [38;2;214;176;91m≣ Folders[0m   [38;2;139;139;139m↻ Refresh[0m                              
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[38;2;214;176;91m▏[0m› Against main  [2m2[0m                                  
+ › Commits  [2m1[0m                                       
+ ⌄ Staged  [2m1[0m                                        
+[38;2;139;139;139m ⌄ src[0m [2m1[0m                                            
+  [38;2;84;84;84m└─[0m [38;2;229;180;84m⊡[0m status.mjs                              [38;2;91;190;112m+2[0m [38;2;224;108;117m−1[0m
+ ⌄ Unstaged  [2m1[0m                                      
+[38;2;139;139;139m ⌄ src[0m [2m1[0m                                            
+  [38;2;84;84;84m└─[0m [38;2;229;180;84m⊡[0m status.mjs                              [38;2;91;190;112m+2[0m [38;2;224;108;117m−1[0m
+ ⌄ Untracked  [2m2[0m                                     
+[38;2;139;139;139m ⌄ assets[0m [2m1[0m                                         
+  [38;2;84;84;84m└─[0m [38;2;91;190;112m?[0m binary.dat                             [38;2;190;132;220mbinary[0m
+[38;2;139;139;139m ⌄ notes[0m [2m1[0m                                          
+  [38;2;84;84;84m└─[0m [38;2;91;190;112m?[0m production ready.md                        [38;2;91;190;112m+3[0m
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+[38;2;84;84;84m────────────────────────────────────────────────────[0m
+[2mj/k select · Enter open · ? help · / search · q[0m     
+
+> herdr-gitrail@0.1.0 artifact:verify
+> node scripts/verify-artifact.mjs
+
+Verified 5 manifest runtime files
+v24.19.0

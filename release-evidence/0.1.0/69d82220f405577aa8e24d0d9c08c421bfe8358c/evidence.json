@@ -1,0 +1,109 @@
+{
+  "version": 5,
+  "release": "0.1.0",
+  "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+  "createdAt": "2026-08-24T12:47:59.362Z",
+  "cells": {
+    "local-node-22": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "npm ci; check; snapshot; artifact",
+      "recordedAt": "2026-08-24T12:49:13.103Z",
+      "node": "v22.23.2",
+      "evidence": {
+        "kind": "file",
+        "path": "files/local-node-22.log",
+        "sha256": "2fe323fecf3fcc36cd0e16cd56f984c9d3ee5c410b125e18e75b97438e19f642"
+      }
+    },
+    "local-node-24": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "npm ci; check; snapshot; artifact",
+      "recordedAt": "2026-08-24T12:50:32.046Z",
+      "node": "v24.19.0",
+      "evidence": {
+        "kind": "file",
+        "path": "files/local-node-24.log",
+        "sha256": "a8d78ddc0d968d2482afd2f916093902ef0f4ca964aa41b4c674e28b810e1274"
+      }
+    },
+    "poisoned-environment": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "npm run check with hostile HERDR_*",
+      "recordedAt": "2026-08-24T12:51:36.957Z",
+      "evidence": {
+        "kind": "file",
+        "path": "files/poisoned-environment.log",
+        "sha256": "6d728d8084c4b68e447d015283a64852359f1e9c6e52e43242185e4627a265fd"
+      }
+    },
+    "archive": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "git archive; verify members; npm ci; artifact; check",
+      "recordedAt": "2026-08-24T12:53:00.740Z",
+      "evidence": {
+        "kind": "file",
+        "path": "files/archive.log",
+        "sha256": "d57c0be72059543375cc46e96dc2fd25b69283f45651c438844a17360ade0089"
+      }
+    },
+    "dependency-audit": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "zero runtime dependencies; npm ci; npm audit",
+      "recordedAt": "2026-08-24T12:53:39.626Z",
+      "evidence": {
+        "kind": "file",
+        "path": "files/dependency-audit.log",
+        "sha256": "cbcf3b9d6720cb180dce11ca9ed353b1cdf26f89284413720a90036d69831117"
+      }
+    },
+    "live-macos": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "isolated watch/poll live smoke and uninstall proof",
+      "recordedAt": "2026-08-24T12:54:44.805Z",
+      "platform": "macOS 26.5.2",
+      "node": "v24.19.0",
+      "herdr": "herdr 0.8.2",
+      "evidence": {
+        "kind": "file",
+        "path": "files/live-macos.log",
+        "sha256": "ab69414f03c93fb6b94cc9e8a96a1abeefe351edac5f0bb2ad717ef0fd901556"
+      }
+    },
+    "live-linux": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "checksum official binaries; isolated watch/poll live smoke and uninstall proof",
+      "recordedAt": "2026-08-24T12:56:55.707Z",
+      "platform": "Linux Debian GNU/Linux 12 (bookworm), Docker Desktop aarch64",
+      "node": "v24.19.0",
+      "herdr": "herdr 0.8.2",
+      "evidence": {
+        "kind": "file",
+        "path": "files/live-linux.log",
+        "sha256": "5d0bee95cee3d25a3ea8b10f8dabbaf786c7d4ea5b8aa2128b694fa6e4d3144c"
+      }
+    },
+    "screenshots": {
+      "status": "pass",
+      "candidateSha": "69d82220f405577aa8e24d0d9c08c421bfe8358c",
+      "command": "verify capture bytes and candidate/source output",
+      "recordedAt": "2026-08-24T12:57:12.034Z",
+      "visualSourceSha": "c818a5a327b0f69e09891b652b8afdd765da4b1c",
+      "captureSourceSha": "33fa9dffc11b2ef3ad2719853207adb8050f24f9",
+      "evidence": {
+        "kind": "file",
+        "path": "files/screenshots.log",
+        "sha256": "c0c9aaa5466bb660f1673a8415fd30f5ee2d9050a833db086acaa085e32c8db7"
+      }
+    }
+  },
+  "bundleVersion": 1,
+  "sealedAt": "2026-08-24T12:57:36.005Z",
+  "sourceManifestSha256": "9edb11529fd7e70d0c437e6a815128943d63cae7a509941f47e9ef41c5c87c23"
+}

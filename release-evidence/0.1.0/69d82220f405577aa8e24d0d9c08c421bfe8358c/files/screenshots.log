@@ -1,0 +1,5 @@
+
+> herdr-gitrail@0.1.0 screenshots:verify
+> node scripts/verify-screenshots.mjs --sha 69d82220f405577aa8e24d0d9c08c421bfe8358c
+
+{"type":"screenshot_verification","candidateSha":"69d82220f405577aa8e24d0d9c08c421bfe8358c","visualSourceSha":"c818a5a327b0f69e09891b652b8afdd765da4b1c","captureSourceSha":"33fa9dffc11b2ef3ad2719853207adb8050f24f9","widths":[36,52,100]}
