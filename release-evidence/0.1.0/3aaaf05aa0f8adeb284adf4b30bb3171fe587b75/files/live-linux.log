@@ -1,0 +1,74 @@
+/tmp/gitrail-linux-assets.AslDQp/herdr: OK
+/tmp/gitrail-linux-assets.AslDQp/glow.tar.gz: OK
+
+> herdr-gitrail@0.1.0 live:release:smoke
+> /bin/bash scripts/run-isolated-live-smoke.sh
+
+herdr server running; you can use any herdr CLI command in another terminal.
+api socket: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr.sock
+client socket: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr-client.sock
+logs: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr-server.log
+did you mean to open the Herdr TUI? run `herdr`; you do not need `herdr server`.
+{"id":"cli:plugin","result":{"plugin":{"actions":[{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-tui"],"contexts":["workspace"],"id":"open-git-rail","title":"Open GitRail"},{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-mockup"],"contexts":["workspace"],"id":"open-git-rail-mockup","title":"Open GitRail Demo"},{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-tui","toggle"],"contexts":["workspace"],"id":"toggle-git-rail","title":"Toggle GitRail"}],"description":"A trustworthy, read-only Files and Git sidebar for each Herdr tab","enabled":true,"events":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"tab.closed"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"tab.created"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"workspace.closed"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"workspace.created"}],"manifest_path":"/workspace/herdr-plugin.toml","min_herdr_version":"0.8.0","name":"Herdr GitRail","panes":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/file-preview.mjs"],"description":"Exact descriptor-aware diff and file preview","id":"file-preview","placement":"tab","title":"GitRail Preview"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/git-rail.mjs","--demo"],"description":"Deterministic GitRail demo derived from a real fixture repository","id":"git-mockup","placement":"overlay","title":"GitRail Demo"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/git-rail.mjs"],"description":"Read-only Files and Git inspection for the focused directory","id":"git-tui","placement":"overlay","title":"HERDER GITRAIL"}],"platforms":["macos","linux"],"plugin_id":"local.git-rail","plugin_root":"/workspace","source":{"kind":"local"},"startup":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"]}],"version":"0.1.0"},"type":"plugin_linked"}}
+{
+  "type": "live_herdr_smoke",
+  "platform": "linux",
+  "node": "v24.19.0",
+  "herdr": "herdr 0.8.2",
+  "watchMode": "watch-only",
+  "observations": [
+    "auto-open and Staged/Unstaged/Untracked separation",
+    "non-Git auto-open exclusion",
+    "manual Toggle and automatic/manual unsafe-layout skips without pane reconstruction",
+    "Diff/Raw/action-3 Glow TUI and preview-tab exclusion",
+    "per-source-tab preview replacement",
+    "inspection preserved HEAD, refs, status, index bytes/mtime, and worktree bytes",
+    "manual refresh, watch-only convergence, and failure-state preservation",
+    "real demo pane and checked-in 36/52/100 capture artifacts"
+  ]
+}
+Unlinked local.git-rail; closed 5 verified GitRail pane(s).
+{"session":{"default":false,"name":"grw21","running":false,"session_dir":"/tmp/grl.89JHuo/w/c/herdr/sessions/grw21","socket_path":"/tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr.sock"},"stopped":true}
+herdr server running; you can use any herdr CLI command in another terminal.
+api socket: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr.sock
+client socket: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr-client.sock
+logs: /tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr-server.log
+did you mean to open the Herdr TUI? run `herdr`; you do not need `herdr server`.
+{"session":{"default":false,"name":"grw21","running":false,"session_dir":"/tmp/grl.89JHuo/w/c/herdr/sessions/grw21","socket_path":"/tmp/grl.89JHuo/w/c/herdr/sessions/grw21/herdr.sock"},"stopped":true}
+{"id":"cli:plugin","result":{"plugin":{"actions":[{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-tui"],"contexts":["workspace"],"id":"open-git-rail","title":"Open GitRail"},{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-mockup"],"contexts":["workspace"],"id":"open-git-rail-mockup","title":"Open GitRail Demo"},{"command":["/bin/bash","scripts/open-herdr-panel.sh","git-tui","toggle"],"contexts":["workspace"],"id":"toggle-git-rail","title":"Toggle GitRail"}],"description":"A trustworthy, read-only Files and Git sidebar for each Herdr tab","enabled":true,"events":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"tab.closed"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"tab.created"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"workspace.closed"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"],"on":"workspace.created"}],"manifest_path":"/workspace/herdr-plugin.toml","min_herdr_version":"0.8.0","name":"Herdr GitRail","panes":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/file-preview.mjs"],"description":"Exact descriptor-aware diff and file preview","id":"file-preview","placement":"tab","title":"GitRail Preview"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/git-rail.mjs","--demo"],"description":"Deterministic GitRail demo derived from a real fixture repository","id":"git-mockup","placement":"overlay","title":"GitRail Demo"},{"command":["/bin/bash","scripts/node-launcher.sh","scripts/git-rail.mjs"],"description":"Read-only Files and Git inspection for the focused directory","id":"git-tui","placement":"overlay","title":"HERDER GITRAIL"}],"platforms":["macos","linux"],"plugin_id":"local.git-rail","plugin_root":"/workspace","source":{"kind":"local"},"startup":[{"command":["/bin/bash","scripts/node-launcher.sh","scripts/auto-open-herdr-tabs.mjs"]}],"version":"0.1.0"},"type":"plugin_linked"}}
+herdr server running; you can use any herdr CLI command in another terminal.
+api socket: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr.sock
+client socket: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr-client.sock
+logs: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr-server.log
+did you mean to open the Herdr TUI? run `herdr`; you do not need `herdr server`.
+{
+  "type": "live_herdr_smoke",
+  "platform": "linux",
+  "node": "v24.19.0",
+  "herdr": "herdr 0.8.2",
+  "watchMode": "poll-only",
+  "observations": [
+    "auto-open and Staged/Unstaged/Untracked separation",
+    "non-Git auto-open exclusion",
+    "manual Toggle and automatic/manual unsafe-layout skips without pane reconstruction",
+    "Diff/Raw/action-3 Glow TUI and preview-tab exclusion",
+    "per-source-tab preview replacement",
+    "inspection preserved HEAD, refs, status, index bytes/mtime, and worktree bytes",
+    "manual refresh, poll-only convergence, and failure-state preservation",
+    "real demo pane and checked-in 36/52/100 capture artifacts"
+  ]
+}
+Unlinked local.git-rail; closed 5 verified GitRail pane(s).
+{"session":{"default":false,"name":"grp21","running":false,"session_dir":"/tmp/grl.89JHuo/p/c/herdr/sessions/grp21","socket_path":"/tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr.sock"},"stopped":true}
+herdr server running; you can use any herdr CLI command in another terminal.
+api socket: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr.sock
+client socket: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr-client.sock
+logs: /tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr-server.log
+did you mean to open the Herdr TUI? run `herdr`; you do not need `herdr server`.
+{"session":{"default":false,"name":"grp21","running":false,"session_dir":"/tmp/grl.89JHuo/p/c/herdr/sessions/grp21","socket_path":"/tmp/grl.89JHuo/p/c/herdr/sessions/grp21/herdr.sock"},"stopped":true}
+isolated live smoke passed with herdr 0.8.2, v24.19.0, and glow version 2.1.2 (f570874)
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
