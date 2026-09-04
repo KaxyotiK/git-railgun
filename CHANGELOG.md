@@ -30,8 +30,10 @@ intentional configuration changes documented here.
 ### Security
 
 - Repository contents never control GitRail configuration or select editor or
-  viewer executables. Configuration is limited to built-in defaults, the user
-  configuration file, and explicit process environment overrides.
+  viewer executables. Branch-specific comparison refs may come from uncommitted
+  local or worktree Git config; all executable settings remain limited to
+  built-in defaults, the user configuration file, and explicit process
+  environment overrides.
 - Verifies workspace, label, and process identity before closing a cached rail
   or preview pane. GitRail never stages or reconstructs a user's pane layout.
 - Bounds Git commands, preview bytes, output, search memory, directory scans,
@@ -40,6 +42,8 @@ intentional configuration changes documented here.
 
 ### Fixed
 
+- Derives repository labels from the shared Git directory so linked worktrees
+  show the repository name separately from the checked-out branch.
 - Prefers the local default branch over its remote-tracking ref so commits
   already on local `main` never reappear as Against-base files or branch commits
   merely because `origin/main` is stale.
@@ -58,11 +62,14 @@ intentional configuration changes documented here.
   cancellation and partial-result diagnostics.
 - Caches Markdown-preview search positions with prefix candidates, eliminating
   the repeated full-result grapheme pass on every rendered search frame.
-- Binds documentation PNG bytes to their capture commit and removes the unused
-  Pillow/macOS-only screenshot renderer.
+- Binds documentation PNG bytes to their capture commit and keeps screenshot
+  regeneration explicit through a maintainer-only Pillow renderer.
 
 ### Configuration
 
+- Adds `branch.<checked-out-branch>.gitrail-base` in local or worktree Git config
+  for uncommitted per-branch comparison bases, below explicit environment/user
+  bases and above automatic local/remote default-branch resolution.
 - Removes pre-release repository-level `.git-rail.json` configuration. Move any
   desired settings to `~/.config/git-rail/config.json`.
 - Removes the unused JSON Schema/editor-integration artifact. Existing

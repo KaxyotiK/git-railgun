@@ -9,7 +9,7 @@
 <p align="center">A compact, read-only repository sidebar for Herdr and cmux.</p>
 
 <p align="center">
-  <a href="#quick-start">Quick start</a> &nbsp;|&nbsp;
+  <a href="#install-and-launch">Quick start</a> &nbsp;|&nbsp;
   <a href="#interaction">Controls</a> &nbsp;|&nbsp;
   <a href="#exact-git-semantics">Git semantics</a> &nbsp;|&nbsp;
   <a href="#configuration">Configuration</a> &nbsp;|&nbsp;
@@ -39,14 +39,44 @@ filesystem browser while Changes clearly reports that Git state is unavailable.
 
 The Herdr host opens a plugin-owned sidebar. The separate cmux host uses the
 same provider, models, TUI, and revision semantics in cmux's **right sidebar
-Dock**, opening selections in the native file viewer. See the
+Dock**, opening selections in the native file viewer. It does not use cmux's
+left/custom-sidebar interpreter or ExtensionKit. See the
 [cmux Dock guide](docs/CMUX.md).
 
-## Quick start
+## One rail. Two native homes.
+
+### Herdr
+
+<p align="center">
+  <a href="docs/screenshots/herdr-host.png">
+    <img src="docs/screenshots/herdr-host.png" width="960" alt="GitRail running as a read-only sidebar in Herdr on the branding-options worktree">
+  </a>
+</p>
+
+GitRail follows the active pane inside a Herdr tab and keeps the repository
+state in a plugin-owned sidebar.
+
+### cmux
+
+<p align="center">
+  <a href="docs/screenshots/cmux-host.png">
+    <img src="docs/screenshots/cmux-host.png" width="960" alt="GitRail running in the cmux right-sidebar Dock on the branding-options worktree">
+  </a>
+</p>
+
+The cmux host resolves the window that owns its Dock surface, follows that
+window's selected workspace, and opens files through cmux's native viewer.
+
+## Install and launch
 
 Requires Node.js 22+, Git 2.35+, and macOS or Linux. The Herdr host targets
 Herdr 0.8.x. The cmux host is macOS-only and requires the right-sidebar Dock
 controls described in the [cmux guide](docs/CMUX.md).
+
+The launcher rejects Node versions older than 22. Release validation covers
+Node 22 and 24 with Herdr 0.8.x. No editor is required: GitRail uses an
+explicit editor when configured, otherwise `$EDITOR`; installed Herdr defaults
+open Markdown files in the system application.
 
 ```bash
 npm ci --ignore-scripts
@@ -211,6 +241,34 @@ read as configuration and cannot choose editor or viewer executables.
 
 <details>
 <summary><strong>Complete configuration behavior and examples</strong></summary>
+
+Comparison bases resolve in this order: explicit `GIT_RAIL_BASE`, user
+`baseRef`, `branch.<checked-out-branch>.gitrail-base` from local or worktree Git
+config, an automatically detected local default branch, and finally its remote
+fallback. If none exists, a committed `HEAD` is the final fallback. Every
+explicitly or branch-configured ref must resolve to a commit; an invalid value
+is reported without silently trying the next source.
+
+Set and remove a branch-specific base in repository-local Git metadata (replace
+the example branch and base names with your own):
+
+```bash
+git config --local 'branch.feature/my-work.gitrail-base' release/1.x
+git config --local --unset-all 'branch.feature/my-work.gitrail-base'
+```
+
+For a setting isolated to one linked worktree, enable Git's worktree config and
+use the worktree scope:
+
+```bash
+git config --local extensions.worktreeConfig true
+git config --worktree 'branch.feature/my-work.gitrail-base' release/1.x
+git config --worktree --unset-all 'branch.feature/my-work.gitrail-base'
+```
+
+Both scopes live under `.git`, are never committed, and can only choose the
+comparison commit; they cannot select an executable. Detached HEAD ignores
+branch keys. An unborn repository has no comparison until it has a commit.
 
 `version` identifies the configuration format, not the GitRail release. It lets
 GitRail reject a future incompatible format instead of interpreting changed

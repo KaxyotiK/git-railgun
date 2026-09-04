@@ -1,10 +1,10 @@
-# Production hardening checklist
+# Production hardening record
 
-Working checklist from the adversarial review of `main` @ `6c7d9ac` (2026-08-23).
-The highest-risk findings were reproduced or measured on macOS 15 / Node 22;
-their evidence is in the appendix. The remaining items have explicit acceptance
-witnesses in their implementation outlines. Unlike `PRODUCTION-READINESS.md`,
-this document records what is **not** yet true.
+Historical checklist from the adversarial review of `main` @ `6c7d9ac`
+(2026-08-23). It records the findings, decisions, implementation contracts, and
+evidence for that hardening effort. Completed boxes describe that reviewed
+work; they are not claims that the current checkout remains release-ready. See
+`PRODUCTION-READINESS.md` for the current release status.
 
 Legend: `[ ]` open · `[x]` done · **(Dn)** blocked on a decision below.
 
@@ -12,7 +12,7 @@ Legend: `[ ]` open · `[x]` done · **(Dn)** blocked on a decision below.
 
 | # | Decision | Status | Recommendation |
 | --- | --- | --- | --- |
-| D1 | Does GitRail support repository-level configuration? | accepted | No. Remove `.git-rail.json` discovery and merging entirely. Configuration comes only from built-in defaults, user configuration, and explicit environment overrides. |
+| D1 | Does GitRail support repository-level configuration? | accepted | No tracked configuration file. Remove `.git-rail.json` discovery and merging entirely. The comparison base alone may also come from uncommitted local or worktree Git config. |
 | D2 | May GitRail add development-only verification dependencies while retaining zero runtime dependencies? | accepted | Yes. Pin development tooling in `package-lock.json`; runtime entrypoints must not import it. The exact linter and rules are an engineering choice. |
 | D3 | Add an Untracked section, or correct the docs? | accepted | Add a distinct, expanded-by-default Untracked section immediately after Unstaged. Use `?` as its section and row glyph, matching Git's status notation. |
 | D4 | Does GitRail ship JSON Schema/editor integration for configuration? | accepted | No. Remove `$schema` from the example and runtime contract, delete the standalone schema and schema-specific tests/docs, and keep `validateConfig` as the single configuration authority. |
@@ -34,21 +34,22 @@ preview limits, restore the terminal on failure, ignore repository-controlled
 configuration, and expose honest errors,
 consistency, security-support, and platform claims. Runtime dependencies remain
 zero; development-only verification dependencies are allowed. User config,
-explicit environment overrides, eventual Git consistency, and a read-only Git
-contract are retained. Repository config, JSON Schema/editor integration,
+explicit environment overrides, uncommitted branch-base Git config, eventual
+Git consistency, and a read-only Git contract are retained. Tracked repository
+config, JSON Schema/editor integration,
 layout rebuild, invented security contact/SLA, and automatic user-file
 migration are non-goals.
 
-This checklist and its implementation contracts are the delivery source of
-truth. Runtime `validateConfig` is the configuration source of truth, and
-`PRODUCTION-READINESS.md` may claim only guarantees traced to the evidence gates
-defined here. Pushing, publishing, and tagging remain separately authorized
-operations.
+This checklist and its implementation contracts were the delivery source of
+truth for the reviewed hardening effort. Runtime `validateConfig` remains the
+configuration source of truth, and current readiness claims must be traced to
+the release evidence. Pushing, publishing, and tagging remain separately
+authorized operations.
 
 ## Phase 1 — blockers
 
 - [x] **B1** Remove repository-level `.git-rail.json` discovery and merging from every runtime path **(D1 accepted)**
-- [x] **B1a** Remove repository-configuration precedence, examples, opt-outs, schema guidance, and tests; document user configuration and environment overrides only
+- [x] **B1a** Remove tracked repository-configuration precedence, examples, opt-outs, schema guidance, and tests; document user/environment configuration and the local/worktree branch-base exception
 - [x] **B1b** Rewrite the `SECURITY.md` trust boundary to state that repository contents never control GitRail configuration
 - [x] **B1c** Regression test: hostile `.git-rail.json` + file preview must not spawn the executable
 - [x] **B2** Shared test helper that spawns with a scrubbed environment (`HOME`/`XDG_*` → temp; delete all `HERDR_*` and `GIT_RAIL_*`)
@@ -106,13 +107,15 @@ and the stated acceptance evidence still passes.
 
 - Stop constructing or reading `<repository>/.git-rail.json` in `loadConfig`;
   merge only built-in defaults, `~/.config/git-rail/config.json`, and explicit
-  environment overrides.
+  environment overrides. The Git provider may additionally read only
+  `branch.<checked-out-branch>.gitrail-base` from local or worktree Git config.
 - Remove the repository-root parameter from config loading where it is no
   longer needed, and update the provider, preview, auto-open, and resize callers
   so none can reintroduce repository discovery indirectly.
 - Keep Git-repository detection for deciding whether a rail should auto-open,
-  but read `herdr.autoOpen` only from user configuration. Per-repository
-  `baseRef`, width, limits, refresh, editor, and viewer overrides cease to exist.
+  but read `herdr.autoOpen` only from user configuration. Per-repository width,
+  limits, refresh, editor, and viewer overrides cease to exist; only the
+  uncommitted branch-specific comparison base remains.
 - Remove repository configuration from precedence lists, installation steps,
   examples, troubleshooting, opt-out instructions, and readiness claims. Keep
   the ordinary JSON example explicitly scoped to the user configuration file;
@@ -124,8 +127,9 @@ and the stated acceptance evidence still passes.
 
 - State that repository contents never control GitRail configuration or select
   an executable.
-- State the only configuration inputs: built-in defaults, the user config file,
-  and explicit process environment overrides.
+- State that general configuration inputs are built-in defaults, the user config
+  file, and explicit process environment overrides, with the comparison base as
+  the sole local/worktree Git-config exception.
 - Retain the no-shell, realpath, output-bound, terminal-sanitization, and logging
   guarantees as defense in depth.
 
@@ -596,6 +600,10 @@ pushing, publishing, or tagging without a separate explicit request.
 
 ## Appendix — evidence
 
+The following reproductions describe the original `6c7d9ac` state before the
+corresponding fixes. Paths, line numbers, output, and present-tense descriptions
+are preserved as historical evidence and do not describe the current checkout.
+
 ### B1 — repository config executes arbitrary code
 
 A committed `.git-rail.json` naming any executable runs it when any file in that
@@ -731,7 +739,7 @@ state.
 ### M3 — unused schema/editor-integration artifact is broken
 
 ```
-https://raw.githubusercontent.com/KaxyotiK/herdr-gitrail/main/schema/v1/git-rail.schema.json
+https://raw.githubusercontent.com/KaxyotiK/git-railgun/main/schema/v1/git-rail.schema.json
 → 404
 ```
 

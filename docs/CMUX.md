@@ -83,11 +83,91 @@ signed resume-command approval policy.
 
 Current cmux discovery does not expose a configured control id on every Dock
 surface. A running GitRail control therefore records its process-backed active
-instance and stable workspace/control/surface identity in the owner-only
-GitRail cache before performing cmux context discovery. The direct launcher
-matches that record against live Dock discovery across main-workspace changes.
-It briefly waits for a configured control that is still starting; unrelated
-configured controls neither match nor block a GitRail launch.
+instance and stable control/surface identity in the owner-only GitRail cache
+before performing cmux context discovery. The direct launcher matches that
+record against live Dock discovery across main-workspace changes. It briefly
+waits for a configured control that is still starting; unrelated configured
+controls neither match nor block a GitRail launch.
+
+## Dock control ownership records
+
+Ownership is the pair of Dock surface and control id. The workspace a Dock
+follows is recorded as observation only and is never used to identify a control,
+because it changes whenever the user selects another workspace. A control
+registers once at startup rather than on every refresh, so one Dock control
+keeps exactly one record for its lifetime.
+
+Version 3 records are named from the surface and control and live in a
+`surfaces` subdirectory of the control cache, so a lookup reads the records for
+the Dock surfaces it can already see rather than every record ever written.
+Version 2 records were named from the workspace. When no version 3 record
+matches, the reader falls back to the version 2 scan, keeps its existing
+selection rules, copies the selected record forward, and only removes legacy
+duplicates naming that same surface after the new record reads back. A failed
+migration returns the version 2 record unchanged, because losing a live control
+is worse than leaving a duplicate. Records for surfaces the caller cannot see
+are never touched, and a recorded process being dead is never a reason to remove
+a record: the relaunch path depends on finding exactly that.
+
+Migration publishes without clobbering. A control registering for real replaces
+its own record, but a migration links its record into place and fails if one is
+already there, because a GitRail that started during the migration owns the
+surface and overwriting its registration would make the launcher act on a stale
+record and interrupt a healthy control. Losing that race returns the winner's
+record, and legacy records are removed only when this migration published the
+record that is now canonical.
+
+A recorded process id alone cannot prove the recorded process is still running,
+because the id can be reassigned after a control exits. Every version 3 record
+pairs the id with the operating system's start time for it, read in a fixed
+locale and time zone so the same process reads back identically from any
+environment, and a control counts as active only when both match. A version 3
+record without that marker is not valid, so an unreadable marker fails
+registration and refuses promotion rather than creating a record that would be
+process-id only for ever. Version 2 records predate the marker and stay
+process-id only for one compatibility cycle, so an upgrade cannot report a live
+control as dead.
+
+The cmux event stream ending is not treated as a failure when it exits cleanly,
+but any termination GitRail did not request is reported, logged, and falls back
+to the bounded refresh poll, so losing selection-following degrades visibly in
+the debug log instead of silently.
+
+## Dock ownership
+
+A GitRail Dock control is owned by the cmux **window** that contains its Dock
+surface. That window, not whichever window happens to be focused, scopes every
+later lookup: the selected workspace, the main-area source surface, and the
+project directory.
+
+cmux reports `caller: null` for a Dock surface, so `identify` cannot name the
+owning window on its own. GitRail therefore discovers the owner from its own
+`CMUX_SURFACE_ID`: the owner is the window whose `list-panels` output contains
+that surface. `GIT_RAIL_WINDOW_ID` and the global-Dock convention of
+`CMUX_WORKSPACE_ID` naming a window are consulted only afterwards, and only
+when they match a live window, because both are lost across Dock restore and
+relaunch. The resolved window id is cached for the life of the process and
+rediscovered after any failed context resolution.
+
+Because cmux stores no environment beside a resume binding and `send` types into
+a shell that no longer holds the Dock's startup environment, both the relaunch
+command and the restart command restate the host variables they need. The owner
+window id is deliberately excluded from the resume command: window ids do not
+survive an app restart, and a stale one would outrank live discovery.
+
+A directory that exists is not necessarily checked out — a global Dock control's
+`cwd: "."` resolves to the home directory. GitRail prefers the first candidate
+that is inside a repository, so the Dock does not settle on a valid but
+unversioned folder and report changes as unavailable.
+
+## Host isolation
+
+GitRail runs under exactly one host per process, chosen by `GIT_RAIL_HOST`. The
+Herdr identity variables and `HERDR_PLUGIN_CONTEXT_JSON` are read only under the
+Herdr host, and the `CMUX_*` identity variables only under cmux. A Dock terminal
+started from a Herdr-managed shell inherits `HERDR_*` variables describing an
+unrelated pane; reading them would seed a cmux Dock ownership record with a
+Herdr workspace id, so they are ignored rather than merged.
 
 ## Cwd and identity rules
 

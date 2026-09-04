@@ -1,5 +1,23 @@
 # Sidebar captures
 
+## Live host captures
+
+[`herdr-host.png`](herdr-host.png) and [`cmux-host.png`](cmux-host.png) show
+the same `branding-options` worktree in the two native hosts. Both are complete
+macOS window captures with no hand-edited terminal content.
+
+- GitRail runtime source: `45c3d91`
+- Repository state: `e88f350`
+- Captured: `2026-09-04`, macOS
+- Herdr layout: plugin-owned right rail
+- cmux layout: global right-sidebar Dock scoped to its owner window
+
+The cmux TUI uses the terminal's alternate screen. Verify it from the rendered
+window, as these captures do; cmux `read-screen` and `capture-pane` expose the
+primary buffer and can show only the login banner while GitRail is healthy.
+
+## Deterministic rail captures
+
 These captures show the same deterministic production-provider demo at 36, 52,
 and 100 terminal columns. Each one renders the exact bytes
 `scripts/git-rail.mjs --demo --snapshot` writes at that width, with its complete

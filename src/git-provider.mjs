@@ -51,6 +51,15 @@ async function resolveRepository(cwd) {
   }
 }
 
+async function resolveRepositoryName(repoRoot) {
+  try {
+    const commonDirectory = (await gitText(repoRoot, ["rev-parse", "--git-common-dir"])).trim();
+    const resolved = await fs.realpath(path.resolve(repoRoot, commonDirectory));
+    if (path.basename(resolved) === ".git") return path.basename(path.dirname(resolved));
+  } catch {}
+  return path.basename(repoRoot);
+}
+
 export async function scanDirectory(root, {
   fileLimit = DIRECTORY_FILE_LIMIT,
   depthLimit = DIRECTORY_DEPTH_LIMIT,
@@ -103,12 +112,16 @@ export async function scanDirectory(root, {
 
 async function resolveBranch(repoRoot) {
   try {
-    return (await gitText(repoRoot, ["symbolic-ref", "--short", "HEAD"])).trim();
+    const name = (await gitText(repoRoot, ["symbolic-ref", "--short", "HEAD"])).trim();
+    return { name, label: name };
   } catch {
     try {
-      return `detached ${(await gitText(repoRoot, ["rev-parse", "--short", "HEAD"])).trim()}`;
+      return {
+        name: "",
+        label: `detached ${(await gitText(repoRoot, ["rev-parse", "--short", "HEAD"])).trim()}`,
+      };
     } catch {
-      return "unborn";
+      return { name: "", label: "unborn" };
     }
   }
 }
@@ -122,11 +135,48 @@ async function commitRefExists(repoRoot, ref) {
   }
 }
 
-async function resolveBase(repoRoot, requested) {
+async function configuredBranchBase(repoRoot, branch) {
+  if (!branch) return null;
+  try {
+    const output = await gitMachineText(repoRoot, [
+      "config", "-z", "--show-scope", "--get-all", `branch.${branch}.gitrail-base`,
+    ]);
+    const fields = output.split("\0");
+    if (fields.at(-1) === "") fields.pop();
+    const configured = [];
+    for (let index = 0; index + 1 < fields.length; index += 2) {
+      const scope = fields[index];
+      if (scope === "local" || scope === "worktree") {
+        configured.push(fields[index + 1].trim());
+      }
+    }
+    return configured.at(-1) ?? null;
+  } catch (error) {
+    if (error instanceof ProcessError && error.kind === "exit") return null;
+    throw error;
+  }
+}
+
+async function validateConfiguredBase(repoRoot, requested, source = "Configured base ref") {
+  return await commitRefExists(repoRoot, requested)
+    ? { baseRef: requested, error: "" }
+    : {
+        baseRef: "",
+        error: `${source} does not resolve to a commit: ${requested || "(empty)"}`,
+      };
+}
+
+async function resolveBase(repoRoot, requested, branch) {
   if (requested) {
-    return await commitRefExists(repoRoot, requested)
-      ? { baseRef: requested, error: "" }
-      : { baseRef: "", error: `Configured base ref does not resolve to a commit: ${requested}` };
+    return validateConfiguredBase(repoRoot, requested);
+  }
+  const branchBase = await configuredBranchBase(repoRoot, branch);
+  if (branchBase !== null) {
+    return validateConfiguredBase(
+      repoRoot,
+      branchBase,
+      `Branch base ref branch.${branch}.gitrail-base`,
+    );
   }
   let remoteHead = "";
   try {
@@ -462,7 +512,11 @@ export async function getRepositoryState(cwd, options = {}) {
     };
   }
   const { config, errors: loadedConfigErrors } = loadConfig(options.env || process.env);
-  const [branch, resolvedBase] = await Promise.all([resolveBranch(repoRoot), resolveBase(repoRoot, config.baseRef)]);
+  const [repository, resolvedBranch] = await Promise.all([
+    resolveRepositoryName(repoRoot),
+    resolveBranch(repoRoot),
+  ]);
+  const resolvedBase = await resolveBase(repoRoot, config.baseRef, resolvedBranch.name);
   const { baseRef } = resolvedBase;
   const configErrors = [...loadedConfigErrors, ...(resolvedBase.error ? [resolvedBase.error] : [])];
   const workingPromise = workingFiles(repoRoot, config.limits.maxFileBytes);
@@ -496,8 +550,8 @@ export async function getRepositoryState(cwd, options = {}) {
   const state = {
     cwd,
     repoRoot,
-    repository: path.basename(repoRoot),
-    branch,
+    repository,
+    branch: resolvedBranch.label,
     baseRef,
     baseLabel: baseRef || "no base",
     againstBase,
