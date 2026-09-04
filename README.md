@@ -1,4 +1,16 @@
-# Herdr GitRail
+<p align="center">
+  <a href="https://kaxyotik.github.io/git-railgun/branding-exploration/">
+    <img src="docs/branding-exploration/assets/readme-hero.png" width="960" alt="git-railgun Repository Totem: a vertical Quake II-inspired railgun constructed from glowing filenames and Git statuses">
+  </a>
+</p>
+
+<h1 align="center">git-railgun</h1>
+
+<p align="center"><strong>A compact, read-only Git sidebar for Herdr and cmux.</strong></p>
+
+<p align="center"><em>git-railgun because gitrail was taken, and railguns &gt; just rails.</em></p>
+
+<p align="center"><a href="https://kaxyotik.github.io/git-railgun/branding-exploration/"><strong>Explore the Repository Totem and other identity studies</strong></a></p>
 
 Herdr GitRail is a compact, read-only sidebar for a Herdr tab's current
 directory. Inside a worktree, every row retains its exact Git scope, so

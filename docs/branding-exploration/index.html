@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>git-railgun / Quake II studies</title>
+  <meta name="description" content="Vertical Quake II railgun-inspired identity studies for git-railgun.">
+  <meta property="og:title" content="git-railgun / Repository Totem">
+  <meta property="og:description" content="Railguns > just rails. Explore the Quake II-inspired identity studies for git-railgun.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kaxyotik.github.io/git-railgun/branding-exploration/">
+  <meta property="og:image" content="https://kaxyotik.github.io/git-railgun/branding-exploration/assets/readme-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Oxanium:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #070706;
+      --iron: #1b1a17;
+      --plate: #28251f;
+      --rust: #a9441e;
+      --rust-dark: #5f2a1d;
+      --coil: #ff3b20;
+      --green: #78ff38;
+      --bone: #d1ccba;
+      --ash: #8f8a7d;
+      --beam: #f5fff0;
+      --mono: "IBM Plex Mono", Menlo, monospace;
+      --display: "Oxanium", Impact, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--void); }
+    body { margin: 0; color: var(--bone); background: var(--void); font: 14px/1.5 var(--mono); }
+    img, svg { display: block; max-width: 100%; }
+    button, a { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    ::selection { color: var(--void); background: var(--green); }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    .noise { position: fixed; inset: 0; z-index: 100; opacity: .07; pointer-events: none; mix-blend-mode: screen; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .skip { position: fixed; top: -60px; left: 20px; z-index: 200; padding: 10px; color: #000; background: var(--green); }
+    .skip:focus { top: 20px; }
+
+    .hud { position: fixed; inset: 0 0 auto; z-index: 80; height: 58px; padding: 0 28px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; background: rgba(7,7,6,.92); border-bottom: 1px solid #4e483e; backdrop-filter: blur(12px); }
+    .wordmark { text-decoration: none; font: 700 18px/1 var(--display); letter-spacing: -.05em; }
+    .wordmark b { color: var(--coil); }
+    nav { display: flex; gap: 6px; }
+    nav a { padding: 8px 10px; color: #aaa493; text-decoration: none; font-size: 10px; }
+    nav a:hover { color: var(--green); }
+    .charge { justify-self: end; color: var(--green); font-size: 10px; }
+    .charge i { display: inline-block; width: 56px; height: 5px; margin-left: 8px; border: 1px solid #4b5f40; vertical-align: middle; }
+    .charge i::after { content: ""; display: block; width: var(--charge, 0%); height: 100%; background: var(--green); }
+
+    .hero { min-height: 100svh; padding-top: 58px; display: grid; grid-template-columns: minmax(340px, .7fr) minmax(560px, 1.3fr); }
+    .hero-copy { padding: clamp(70px, 9vw, 150px) 4vw 50px; background: var(--iron); display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid #4e483e; }
+    .kicker { margin: 0; color: var(--coil); font-size: 10px; }
+    h1, h2, h3 { margin: 0; font-family: var(--display); text-transform: uppercase; }
+    h1 { margin-top: 32px; color: var(--beam); font-size: clamp(58px, 7vw, 116px); line-height: .8; letter-spacing: -.075em; }
+    h1 span { display: block; color: var(--rust); }
+    .hero-copy .lede { max-width: 39ch; margin: 34px 0 0; color: #aaa493; font-size: 12px; }
+    .readout { border-top: 1px solid #514a3f; padding-top: 18px; display: grid; grid-template-columns: 1fr auto; gap: 20px; font-size: 10px; }
+    .readout b { color: var(--green); font-weight: 500; }
+    .hero-visual { min-height: calc(100svh - 58px); position: relative; background: #0c0b09; overflow: hidden; }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .25s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+    .hero-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,7,6,.78), transparent 34%); }
+    .hero-caption { position: absolute; z-index: 3; left: 30px; bottom: 28px; }
+    .hero-caption strong { display: block; color: white; font: 600 19px/1.1 var(--display); text-transform: uppercase; }
+    .hero-caption span { color: var(--ash); font-size: 9px; }
+    .concept-nav { position: absolute; z-index: 5; right: 24px; bottom: 26px; display: flex; gap: 7px; }
+    .concept-nav button { width: 35px; height: 35px; padding: 0; color: var(--bone); background: rgba(8,8,6,.82); border: 1px solid #696154; }
+    .concept-nav button.active { color: #000; background: var(--green); border-color: var(--green); }
+
+    .section-head { display: grid; grid-template-columns: 160px 1.25fr .75fr; gap: 34px; padding: 76px 4vw 46px; border-top: 1px solid #4e483e; border-bottom: 1px solid #4e483e; background: #11110f; }
+    .section-head > span { color: var(--coil); font-size: 10px; }
+    .section-head h2 { color: var(--beam); font-size: clamp(38px, 5vw, 76px); line-height: .86; letter-spacing: -.06em; }
+    .section-head p { max-width: 43ch; margin: 4px 0 0; color: #aaa493; font-size: 12px; }
+
+    .about { display: grid; grid-template-columns: .7fr 1.3fr; min-height: 560px; border-top: 1px solid #4e483e; border-bottom: 1px solid #4e483e; background: var(--bone); color: #11110e; }
+    .about-title { padding: 70px 4vw; border-right: 1px solid #817b6d; display: flex; flex-direction: column; justify-content: space-between; }
+    .about-title span { color: var(--rust); font-size: 10px; }
+    .about-title h2 { font-size: clamp(48px, 7vw, 108px); line-height: .8; letter-spacing: -.075em; }
+    .about-copy { padding: clamp(70px, 9vw, 130px) 6vw; display: flex; flex-direction: column; justify-content: center; }
+    .about-copy blockquote { margin: 0; max-width: 19ch; font: 600 clamp(30px, 4vw, 64px)/1.04 var(--display); letter-spacing: -.05em; text-transform: uppercase; }
+    .about-copy blockquote b { color: var(--rust); }
+    .about-copy p { max-width: 55ch; margin: 34px 0 0; color: #4f4b42; font-size: 12px; }
+
+    .actual { display: grid; grid-template-columns: .9fr 1.1fr; min-height: 760px; background: #242831; border-bottom: 1px solid #4e483e; }
+    .actual-shot { padding: 65px 6vw; display: grid; place-items: center; border-right: 1px solid #555b66; position: relative; }
+    .actual-shot::before { content: "actual software ↓"; position: absolute; top: 30px; left: 32px; color: #c79f42; font-size: 10px; }
+    .actual-shot img { width: min(360px, 75%); max-height: 620px; object-fit: cover; object-position: top; border: 1px solid #626a76; box-shadow: 26px 26px 0 #171a20; }
+    .actual-copy { padding: 70px 5vw; display: flex; flex-direction: column; justify-content: center; }
+    .actual-copy h2 { color: var(--beam); font-size: clamp(44px, 6vw, 90px); line-height: .84; letter-spacing: -.065em; }
+    .actual-copy > p { max-width: 47ch; color: #aeb3bd; font-size: 12px; }
+    .specs { margin-top: 34px; border-top: 1px solid #555b66; }
+    .spec { display: grid; grid-template-columns: 160px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #555b66; font-size: 10px; }
+    .spec span { color: #777f8c; }
+    .spec strong { color: #e2e6ec; font-weight: 500; }
+    .spec strong.safe { color: var(--green); }
+
+    .big-studies { display: grid; grid-template-columns: repeat(3, 1fr); background: #0d0c0a; }
+    .study { border-right: 1px solid #4e483e; }
+    .study:last-child { border-right: 0; }
+    .study-image { height: min(74vw, 900px); overflow: hidden; background: #111; }
+    .study-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .5s ease; }
+    .study:hover .study-image img { transform: scale(1.02); }
+    .study-copy { min-height: 210px; padding: 26px 25px 34px; }
+    .study-copy .num { color: var(--coil); font-size: 10px; }
+    .study-copy h3 { margin: 10px 0 9px; color: var(--beam); font-size: 25px; letter-spacing: -.035em; }
+    .study-copy p { margin: 0; max-width: 42ch; color: #aaa493; font-size: 11px; }
+    .study-copy em { display: block; margin-top: 17px; color: var(--green); font-style: normal; font-size: 9px; }
+
+    .translation { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; border-top: 1px solid #4e483e; }
+    .weapon-anatomy { display: grid; place-items: center; padding: 6vw; background: #211c17; border-right: 1px solid #4e483e; }
+    .weapon-anatomy svg { width: min(460px, 90%); max-height: 530px; }
+    .traits { background: var(--bone); color: #12110f; }
+    .trait { display: grid; grid-template-columns: 54px 1fr; gap: 18px; padding: 26px 36px; border-bottom: 1px solid #8f8a7d; }
+    .trait:last-child { border-bottom: 0; }
+    .trait b { color: var(--rust); font: 700 18px/1 var(--display); }
+    .trait strong { display: block; margin-bottom: 4px; font-family: var(--display); text-transform: uppercase; }
+    .trait p { margin: 0; color: #514d43; font-size: 11px; }
+
+    .marks { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .mark { min-height: 420px; display: grid; grid-template-rows: auto 1fr auto; background: var(--plate); border-right: 1px solid #514b40; border-bottom: 1px solid #514b40; }
+    .mark:nth-child(4n) { border-right: 0; }
+    .mark.picked { background: #392a20; }
+    .mark-meta { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; color: #9c9587; font-size: 9px; }
+    .pick { width: 30px; height: 30px; padding: 0; border: 1px solid #635b4e; background: transparent; }
+    .pick[aria-pressed="true"] { color: #000; background: var(--green); border-color: var(--green); }
+    .mark-stage { min-height: 230px; padding: 30px; display: grid; place-items: center; background: radial-gradient(circle, #373229 0, #1a1916 68%); }
+    .mark-stage svg { width: min(210px, 88%); max-height: 205px; filter: drop-shadow(0 7px 0 #070706); }
+    .mark-copy { padding: 21px 19px 27px; }
+    .mark-copy h3 { color: var(--beam); font-size: 18px; letter-spacing: -.03em; }
+    .mark-copy p { margin: 7px 0 0; color: #aaa493; font-size: 10px; }
+
+    .system { display: grid; grid-template-columns: 1fr 1fr; min-height: 650px; background: #10100d; }
+    .system-copy { padding: 80px 6vw; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid #4e483e; }
+    .system-copy h2 { color: var(--beam); font-size: clamp(44px, 6vw, 90px); line-height: .84; letter-spacing: -.07em; }
+    .system-copy h2 span { color: var(--rust); }
+    .system-copy p { max-width: 46ch; color: #aaa493; font-size: 12px; }
+    .palette { display: flex; }
+    .swatch { width: 48px; height: 48px; margin-right: -1px; border: 1px solid #71695a; }
+    .system-board { position: relative; overflow: hidden; padding: 60px 5vw; background: repeating-linear-gradient(0deg, #191712 0, #191712 34px, #221f19 35px); }
+    .system-board::after { content: ""; position: absolute; left: 50%; top: 12%; bottom: 12%; width: 3px; background: var(--coil); box-shadow: 0 0 18px var(--coil); }
+    .lockup { position: relative; z-index: 2; font: 700 clamp(42px, 5vw, 78px)/.85 var(--display); letter-spacing: -.07em; text-transform: uppercase; }
+    .lockup b { color: var(--coil); }
+    .file-stack { position: relative; z-index: 2; width: 66%; margin: 90px auto 0; perspective: 500px; }
+    .file-row { margin-top: -1px; padding: 10px 13px; color: var(--bone); background: #0d0d0b; border: 1px solid #625b4f; font-size: 9px; transform: rotateX(7deg) scale(var(--s)); }
+    .file-row.hot { color: #000; background: var(--green); }
+
+    .recommendation { padding: 110px 4vw 130px; display: grid; grid-template-columns: .75fr 1.25fr; gap: 8vw; background: #080806; border-top: 1px solid #4e483e; }
+    .recommendation h2 { color: var(--beam); font-size: clamp(48px, 7vw, 105px); line-height: .82; letter-spacing: -.07em; }
+    .recommendation h2 span { color: var(--coil); }
+    .steps { border-top: 1px solid #554f44; }
+    .step { display: grid; grid-template-columns: 42px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid #554f44; }
+    .step > b { color: var(--coil); font-family: var(--display); }
+    .step strong { display: block; color: var(--beam); font-family: var(--display); text-transform: uppercase; }
+    .step p { margin: 5px 0 0; max-width: 57ch; color: #aaa493; font-size: 11px; }
+
+    .drawer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; transform: translateY(110%); transition: transform .2s ease; color: var(--bone); background: #14130f; border-top: 2px solid var(--green); }
+    .drawer.open { transform: translateY(0); }
+    .drawer-head { display: flex; justify-content: space-between; padding: 10px 4vw; border-bottom: 1px solid #4e483e; font-size: 9px; }
+    .drawer-head button { border: 0; background: transparent; }
+    .drawer-items { display: flex; padding: 0 4vw; overflow-x: auto; }
+    .drawer-item { min-width: 210px; padding: 14px 18px; border-right: 1px solid #4e483e; }
+    .drawer-item strong { display: block; color: white; font-family: var(--display); text-transform: uppercase; }
+    .drawer-item span { color: #918a7c; font-size: 9px; }
+    footer { padding: 32px 4vw; display: flex; justify-content: space-between; gap: 25px; color: #777165; background: #050504; border-top: 1px solid #3f3a32; font-size: 9px; }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { min-height: 580px; border-right: 0; border-bottom: 1px solid #4e483e; }
+      .hero-visual { min-height: 1100px; }
+      .section-head { grid-template-columns: 110px 1fr; }
+      .section-head p { grid-column: 2; }
+      .about, .actual { grid-template-columns: 1fr; }
+      .about-title, .actual-shot { border-right: 0; border-bottom: 1px solid #817b6d; }
+      .big-studies { grid-template-columns: 1fr; }
+      .study { display: grid; grid-template-columns: 1fr .65fr; border-right: 0; border-bottom: 1px solid #4e483e; }
+      .study-image { height: 780px; }
+      .marks { grid-template-columns: repeat(2, 1fr); }
+      .mark:nth-child(4n) { border-right: 1px solid #514b40; }
+      .mark:nth-child(2n) { border-right: 0; }
+      .system, .recommendation { grid-template-columns: 1fr; }
+      .system-copy { min-height: 480px; border-right: 0; border-bottom: 1px solid #4e483e; }
+    }
+    @media (max-width: 650px) {
+      .hud { grid-template-columns: 1fr auto; padding: 0 16px; }
+      nav { display: none; }
+      .hero-copy { min-height: 520px; padding-left: 20px; padding-right: 20px; }
+      h1 { font-size: 20vw; }
+      .hero-visual { min-height: 750px; }
+      .section-head { grid-template-columns: 1fr; padding: 52px 20px 32px; gap: 10px; }
+      .section-head p { grid-column: auto; }
+      .about-title, .about-copy, .actual-shot, .actual-copy { padding-left: 20px; padding-right: 20px; }
+      .actual-shot { min-height: 720px; }
+      .spec { grid-template-columns: 125px 1fr; }
+      .big-studies { grid-template-columns: 1fr; }
+      .study { display: block; }
+      .study-image { height: 780px; }
+      .translation { grid-template-columns: 1fr; }
+      .weapon-anatomy { min-height: 560px; border-right: 0; border-bottom: 1px solid #4e483e; }
+      .trait { padding: 21px 20px; }
+      .marks { grid-template-columns: 1fr; }
+      .mark, .mark:nth-child(4n) { border-right: 0; }
+      .system-copy, .system-board, .recommendation { padding-left: 20px; padding-right: 20px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-slide, .study-image img, .drawer { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <a class="skip" href="#studies">Skip to concepts</a>
+  <header class="hud">
+    <a class="wordmark" href="#top">git<b>-</b>railgun</a>
+    <nav aria-label="Presentation sections"><a href="#about">About</a><a href="#actual">Actual thing</a><a href="#studies">Ideas</a><a href="#marks">Marks</a></nav>
+    <div class="charge">rail charge <i></i></div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <div><p class="kicker">Quake II / first-person view / vertical file rail</p><h1>Load<br>the <span>repo.</span></h1><p class="lede">A corrected direction: the orange railgun rises from the bottom of the frame. Its recessed spine is loaded with files. One selected path leaves the muzzle as a shot.</p></div>
+        <div class="readout"><span>concept chamber <b>03 / 03 ready</b></span><span>↑ fire direction</span></div>
+      </div>
+      <div class="hero-visual">
+        <figure class="hero-slide"><img src="assets/quake2-loaded-spine.png" alt="A vertical Quake II-inspired railgun with files loaded into its glowing central spine."><figcaption class="hero-caption"><strong>Loaded Spine</strong><span>faithful / physical / product-readable</span></figcaption></figure>
+        <figure class="hero-slide"><img src="assets/quake2-arena-print.png" alt="A graphic orange railgun poster with file panels receding toward an upward beam."><figcaption class="hero-caption"><strong>Arena Print</strong><span>graphic / editorial / campaign</span></figcaption></figure>
+        <figure class="hero-slide active"><img src="assets/quake2-repository-totem.png" alt="A vertical railgun silhouette constructed entirely from glowing filenames and Git statuses."><figcaption class="hero-caption"><strong>Repository Totem</strong><span>typographic / abstract / ownable</span></figcaption></figure>
+        <div class="concept-nav" role="group" aria-label="Choose hero concept"><button data-slide="0" aria-label="Show Loaded Spine">1</button><button data-slide="1" aria-label="Show Arena Print">2</button><button class="active" data-slide="2" aria-label="Show Repository Totem">3</button></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-title"><span>About the extremely serious name</span><h2>Why<br>railgun?</h2></div>
+      <div class="about-copy"><blockquote><b>git-railgun</b> because <code>gitrail</code> was taken, and railguns &gt; just rails.</blockquote><p>It’s a tiny, read-only Git sidebar with an unnecessarily high-velocity name. The product keeps repository state exact and boring. The identity is allowed to be neither.</p></div>
+    </section>
+
+    <section class="actual" id="actual">
+      <div class="actual-shot"><img src="../screenshots/gitrail-52.png" alt="The actual GitRail sidebar showing Changes and Files in a terminal."></div>
+      <div class="actual-copy"><p class="kicker">Yes, there is actual software under here</p><h2>Silly name.<br>Sensible rail.</h2><p>GitRail sits beside a Herdr or cmux pane and shows the exact state you’re about to inspect. It does not write, stage, reset, rebase, rewrite history, or accidentally vaporize the worktree.</p><div class="specs"><div class="spec"><span>ammo</span><strong>files</strong></div><div class="spec"><span>rail caliber</span><strong>LOTS (or few) rows</strong></div><div class="spec"><span>muzzle velocity</span><strong>one double-click</strong></div><div class="spec"><span>targeting system</span><strong>exact revision semantics</strong></div><div class="spec"><span>collateral damage</span><strong class="safe">none — read-only</strong></div><div class="spec"><span>safety</span><strong class="safe">permanently on</strong></div></div></div>
+    </section>
+
+    <section id="studies">
+      <header class="section-head"><span>Three big ideas</span><h2>Same angle.<br>Different abstraction.</h2><p>The first-person vertical read is non-negotiable. The useful question is how literally the files become the weapon.</p></header>
+      <div class="big-studies">
+        <article class="study"><div class="study-image"><img src="assets/quake2-loaded-spine.png" alt="Loaded Spine concept."></div><div class="study-copy"><span class="num">01 / literal translation</span><h3>Loaded Spine</h3><p>Files are physical ammunition plates inside the hot orange housing. Closest to the Quake II view and clearest at first glance.</p><em>Best for: homepage hero, launch art, splash screen</em></div></article>
+        <article class="study"><div class="study-image"><img src="assets/quake2-arena-print.png" alt="Arena Print concept."></div><div class="study-copy"><span class="num">02 / graphic translation</span><h3>Arena Print</h3><p>Hard screen-print shapes make the weapon feel like a brand asset instead of game concept art. Strongest color and silhouette system.</p><em>Best for: docs covers, release posters, social</em></div></article>
+        <article class="study"><div class="study-image"><img src="assets/quake2-repository-totem.png" alt="Repository Totem concept."></div><div class="study-copy"><span class="num">03 / typographic translation</span><h3>Repository Totem</h3><p>The files don’t sit on the gun—they are the gun. A single selected path continues upward as the beam.</p><em>Best for: motion, terminal animation, campaign identity</em></div></article>
+      </div>
+    </section>
+
+    <section class="translation">
+      <div class="weapon-anatomy">
+        <svg viewBox="0 0 360 600" role="img" aria-label="Vertical diagram showing file panels forming a Quake II-inspired railgun">
+          <defs><filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+          <path d="M104 574L42 505L67 264L126 192L145 64H215L234 192L293 264L318 505L256 574Z" fill="#a9441e" stroke="#d1ccba" stroke-width="7"/>
+          <path d="M136 557L100 490L112 281L149 212H211L248 281L260 490L224 557Z" fill="#0c0c0a" stroke="#5f2a1d" stroke-width="6"/>
+          <g fill="#261611" stroke="#ff3b20" stroke-width="2" filter="url(#glow)"><path d="M123 468H237L230 506H130Z"/><path d="M118 410H242L239 452H121Z"/><path d="M118 353H242V394H118Z"/><path d="M123 298H237L241 337H119Z"/><path d="M137 248H223L234 283H126Z"/></g>
+          <g fill="#d1ccba" font-family="monospace" font-size="9" text-anchor="middle"><text x="180" y="491">untracked 2</text><text x="180" y="436">staged +42 −7</text><text x="180" y="379">src/model.mjs</text><text x="180" y="322">README.md</text><text x="180" y="270">HEAD</text></g>
+          <path d="M180 64V4" stroke="#f5fff0" stroke-width="5" filter="url(#glow)"/><circle cx="180" cy="4" r="9" fill="#ff3b20" filter="url(#glow)"/>
+          <g fill="#78ff38"><circle cx="74" cy="483" r="6"/><circle cx="286" cy="483" r="6"/></g>
+        </svg>
+      </div>
+      <div class="traits">
+        <div class="trait"><b>01</b><div><strong>Wide at the player</strong><p>The housing should feel massive at the bottom edge, not like a neat logo floating in space.</p></div></div>
+        <div class="trait"><b>02</b><div><strong>Files recede upward</strong><p>Rows get narrower and tighter as they approach the muzzle. Perspective supplies the velocity.</p></div></div>
+        <div class="trait"><b>03</b><div><strong>Orange shell, black spine</strong><p>The color blocking does most of the Quake II recognition before any detail is visible.</p></div></div>
+        <div class="trait"><b>04</b><div><strong>One path fires</strong><p>The active file changes from bone to white-hot; its name can stretch into the beam or target.</p></div></div>
+        <div class="trait"><b>05</b><div><strong>Git is the HUD</strong><p>Green additions, red deletions, and status counts belong inside the gun instead of around it.</p></div></div>
+      </div>
+    </section>
+
+    <section id="marks">
+      <header class="section-head"><span>Reduced marks</span><h2>Pieces that<br>survive at 16px.</h2><p>The full first-person composition is the hero. These isolate its orange shell, loaded spine, muzzle, and shot for everyday product use.</p></header>
+      <div class="marks">
+        <article class="mark" data-name="Loaded Barrel" data-note="Best core icon"><div class="mark-meta"><span>A / app icon</span><button class="pick" aria-pressed="false" aria-label="Shortlist Loaded Barrel">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Orange vertical barrel with a black file spine"><path d="M33 208L16 177L32 72L64 40L72 7H108L116 40L148 72L164 177L147 208Z" fill="#a9441e" stroke="#d1ccba" stroke-width="6"/><path d="M60 192L49 167L57 82L76 54H104L123 82L131 167L120 192Z" fill="#11110e"/><g stroke="#ff3b20" stroke-width="5"><path d="M65 156H115"/><path d="M62 131H118"/><path d="M64 106H116"/><path d="M70 82H110"/></g><path d="M90 8V-10" stroke="#f5fff0" stroke-width="5"/></svg></div><div class="mark-copy"><h3>Loaded Barrel</h3><p>Most literal reduced version; still reads vertically at favicon scale.</p></div></article>
+        <article class="mark" data-name="File Chamber" data-note="Most product-native"><div class="mark-meta"><span>B / file stack</span><button class="pick" aria-pressed="false" aria-label="Shortlist File Chamber">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Perspective file stack inside orange rails"><path d="M35 207L21 183L46 21H67L55 207ZM125 207L113 21H134L159 183L145 207Z" fill="#a9441e"/><g fill="#161511" stroke="#ff3b20" stroke-width="3"><path d="M56 171H124L119 201H61Z"/><path d="M52 131H128L125 161H55Z"/><path d="M53 94H127L129 121H51Z"/><path d="M60 60H120L125 85H55Z"/><path d="M70 32H110L117 52H63Z"/></g><g fill="#78ff38"><rect x="69" y="184" width="42" height="5"/><rect x="73" y="144" width="34" height="5"/></g></svg></div><div class="mark-copy"><h3>File Chamber</h3><p>The data is the weapon; avoids drawing a conventional gun.</p></div></article>
+        <article class="mark" data-name="Muzzle Cursor" data-note="Cleanest small mark"><div class="mark-meta"><span>C / cursor</span><button class="pick" aria-pressed="false" aria-label="Shortlist Muzzle Cursor">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="A muzzle and beam above a tapered orange cursor"><path d="M38 195L62 78H118L142 195L90 217Z" fill="#a9441e" stroke="#d1ccba" stroke-width="6"/><circle cx="90" cy="69" r="26" fill="#151511" stroke="#d1ccba" stroke-width="7"/><circle cx="90" cy="69" r="10" fill="#ff3b20"/><path d="M90 59V3" stroke="#f5fff0" stroke-width="5"/><path d="M70 116H110M65 143H115M59 170H121" stroke="#191713" stroke-width="7"/></svg></div><div class="mark-copy"><h3>Muzzle Cursor</h3><p>The railgun’s barrel becomes the active terminal cursor.</p></div></article>
+        <article class="mark" data-name="Single Path" data-note="Best motion signature"><div class="mark-meta"><span>D / shot</span><button class="pick" aria-pressed="false" aria-label="Shortlist Single Path">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Filename stack converging into one vertical beam"><g fill="#d1ccba" font-family="monospace" font-size="8" text-anchor="middle"><text x="90" y="202">untracked 2</text><text x="90" y="181">src/model.mjs</text><text x="90" y="160">README.md</text><text x="90" y="139">staged +42</text><text x="90" y="118">HEAD</text></g><g fill="none" stroke="#a9441e" stroke-width="3"><path d="M31 208L63 111H117L149 208"/><path d="M44 208L70 111M136 208L110 111"/></g><path d="M90 111V12" stroke="#f5fff0" stroke-width="5"/><circle cx="90" cy="12" r="8" fill="#78ff38"/></svg></div><div class="mark-copy"><h3>Single Path</h3><p>Filename rows converge until HEAD becomes the shot.</p></div></article>
+        <article class="mark" data-name="GR Spine" data-note="Best monogram"><div class="mark-meta"><span>E / monogram</span><button class="pick" aria-pressed="false" aria-label="Shortlist GR Spine">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="GR monogram arranged along a vertical orange spine"><path d="M25 69C25 28 47 9 80 9V43C66 43 58 52 58 70C58 91 67 101 84 101V68H68" fill="none" stroke="#d1ccba" stroke-width="15"/><path d="M97 211V112H126C153 112 163 126 163 145C163 162 152 173 136 175L166 211M97 151H126" fill="none" stroke="#d1ccba" stroke-width="15"/><path d="M90 4V216" stroke="#ff3b20" stroke-width="7"/><rect x="81" y="99" width="18" height="18" fill="#78ff38"/></svg></div><div class="mark-copy"><h3>GR Spine</h3><p>A custom GR is split by the accelerator channel.</p></div></article>
+        <article class="mark" data-name="Status Ribs" data-note="Best repeating motif"><div class="mark-meta"><span>F / pattern</span><button class="pick" aria-pressed="false" aria-label="Shortlist Status Ribs">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Tapered vertical status ribs"><path d="M28 212L57 16M152 212L123 16" stroke="#a9441e" stroke-width="13"/><g fill="#1a1916" stroke="#d1ccba" stroke-width="3"><path d="M49 182H131L127 203H53Z"/><path d="M54 147H126L123 168H57Z"/><path d="M60 112H120L118 133H62Z"/><path d="M66 77H114L112 98H68Z"/><path d="M72 42H108L106 63H74Z"/></g><g fill="#78ff38" font-family="monospace" font-size="9" text-anchor="middle"><text x="90" y="196">?</text><text x="90" y="161">+</text><text x="90" y="126">M</text><text x="90" y="91">−</text><text x="90" y="56">R</text></g></svg></div><div class="mark-copy"><h3>Status Ribs</h3><p>Git states replace the black mechanical ribs on the housing.</p></div></article>
+        <article class="mark" data-name="Hot Index" data-note="Closest to current UI"><div class="mark-meta"><span>G / selection</span><button class="pick" aria-pressed="false" aria-label="Shortlist Hot Index">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Gold file selection rail inside orange vertical housing"><path d="M25 210L49 19H72L61 210M155 210L131 19H108L119 210" fill="#a9441e"/><path d="M68 193H112M66 161H114M64 129H116M62 97H118M60 65H120M58 33H122" stroke="#d1ccba" stroke-width="6"/><path d="M51 129H129" stroke="#78ff38" stroke-width="12"/><path d="M90 129V2" stroke="#f5fff0" stroke-width="4"/></svg></div><div class="mark-copy"><h3>Hot Index</h3><p>The current gold focus rail evolves into a charged green round.</p></div></article>
+        <article class="mark" data-name="Repo Slug" data-note="Most abstract"><div class="mark-meta"><span>H / abstract</span><button class="pick" aria-pressed="false" aria-label="Shortlist Repo Slug">+</button></div><div class="mark-stage"><svg viewBox="0 0 180 220" aria-label="Vertical projectile made of file panels"><path d="M90 4L126 46L151 188L90 217L29 188L54 46Z" fill="#a9441e" stroke="#d1ccba" stroke-width="6"/><path d="M90 24L107 57L122 173L90 190L58 173L73 57Z" fill="#14130f"/><g fill="#ff3b20"><rect x="70" y="137" width="40" height="7"/><rect x="73" y="111" width="34" height="7"/><rect x="77" y="85" width="26" height="7"/><rect x="81" y="60" width="18" height="7"/></g><circle cx="90" cy="166" r="8" fill="#78ff38"/></svg></div><div class="mark-copy"><h3>Repo Slug</h3><p>A commit compressed into a faceted vertical projectile.</p></div></article>
+      </div>
+    </section>
+
+    <section class="system" id="system">
+      <div class="system-copy"><div><p class="kicker">Recommended system</p><h2>Orange<br>shell.<br><span>Live spine.</span></h2><p>Use the Quake II perspective as the expressive device, not everywhere. Everyday UI stays dark and quiet. Rust-orange geometry frames the product; green means active/loaded; red is heat and diff deletion; bone is readable file text.</p></div><div class="palette"><span class="swatch" style="background:#070706"></span><span class="swatch" style="background:#a9441e"></span><span class="swatch" style="background:#ff3b20"></span><span class="swatch" style="background:#78ff38"></span><span class="swatch" style="background:#d1ccba"></span></div></div>
+      <div class="system-board"><div class="lockup">git<b>-</b><br>railgun</div><div class="file-stack"><div class="file-row" style="--s:.74">HEAD</div><div class="file-row" style="--s:.82">src/model.mjs</div><div class="file-row" style="--s:.9">README.md</div><div class="file-row hot" style="--s:1">git-watch.test.mjs&nbsp;&nbsp;+42 −7</div><div class="file-row" style="--s:1.1">untracked&nbsp;&nbsp;2</div></div></div>
+    </section>
+
+    <section class="recommendation" id="recommendation"><h2>Fire<br><span>this.</span></h2><div class="steps"><div class="step"><b>01</b><div><strong>Repository Totem is the lead concept.</strong><p>The files are not decoration on a gun. The files become its body, accelerator, and shot.</p></div></div><div class="step"><b>02</b><div><strong>File Chamber becomes the core icon.</strong><p>It retains the vertical perspective and loaded spine without requiring the full illustrative composition.</p></div></div><div class="step"><b>03</b><div><strong>Loaded Spine supplies the product bridge.</strong><p>Use it when the identity needs to show actual filenames and Git status in a more immediately readable form.</p></div></div><div class="step"><b>04</b><div><strong>Keep the joke dry.</strong><p>The tool is serious. The name, specs, and occasional railgun flourish can carry the silliness without turning the UI into a game skin.</p></div></div></div></section>
+  </main>
+
+  <aside class="drawer" aria-label="Shortlisted marks"><div class="drawer-head"><span>Loaded marks</span><button type="button">close</button></div><div class="drawer-items"><div class="drawer-item"><strong>Empty chamber</strong><span>Use + on a mark to load it.</span></div></div></aside>
+  <footer><span>git-railgun / Quake II vertical studies</span><span>Original derivative concepts based on the supplied first-person composition reference.</span></footer>
+
+  <script>
+    const slides = [...document.querySelectorAll('.hero-slide')];
+    const slideButtons = [...document.querySelectorAll('.concept-nav button')];
+    slideButtons.forEach(button => button.addEventListener('click', () => { const index = Number(button.dataset.slide); slides.forEach((slide, i) => slide.classList.toggle('active', i === index)); slideButtons.forEach((item, i) => item.classList.toggle('active', i === index)); }));
+    const meter = document.querySelector('.charge i');
+    const updateMeter = () => { const range = document.documentElement.scrollHeight - innerHeight; meter.style.setProperty('--charge', `${range ? scrollY / range * 100 : 0}%`); };
+    addEventListener('scroll', updateMeter, { passive: true }); updateMeter();
+    const loaded = new Map(); const drawer = document.querySelector('.drawer'); const items = document.querySelector('.drawer-items');
+    function renderLoaded() { items.innerHTML = ''; if (!loaded.size) { items.innerHTML = '<div class="drawer-item"><strong>Empty chamber</strong><span>Use + on a mark to load it.</span></div>'; drawer.classList.remove('open'); return; } loaded.forEach((mark, name) => { const item = document.createElement('div'); item.className = 'drawer-item'; item.innerHTML = `<strong>${name}</strong><span>${mark.dataset.note}</span>`; items.append(item); }); drawer.classList.add('open'); }
+    document.querySelectorAll('.pick').forEach(button => button.addEventListener('click', () => { const mark = button.closest('.mark'); const active = button.getAttribute('aria-pressed') === 'true'; button.setAttribute('aria-pressed', String(!active)); button.textContent = active ? '+' : '✓'; mark.classList.toggle('picked', !active); if (active) loaded.delete(mark.dataset.name); else loaded.set(mark.dataset.name, mark); renderLoaded(); }));
+    document.querySelector('.drawer-head button').addEventListener('click', () => drawer.classList.toggle('open'));
+  </script>
+</body>
+</html>
