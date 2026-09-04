@@ -1,50 +1,52 @@
 <p align="center">
-  <a href="https://kaxyotik.github.io/git-railgun/branding-exploration/">
-    <img src="docs/branding-exploration/assets/readme-hero.png" width="960" alt="git-railgun Repository Totem: a vertical Quake II-inspired railgun constructed from glowing filenames and Git statuses">
-  </a>
+  <img src="docs/branding-exploration/assets/readme-hero.png" width="960" alt="git-railgun Repository Totem: a vertical Quake II-inspired railgun constructed from glowing filenames and Git statuses">
 </p>
 
 <h1 align="center">git-railgun</h1>
 
-<p align="center"><strong>A compact, read-only Git sidebar for Herdr and cmux.</strong></p>
+<p align="center"><strong>See every Git state. Open the exact revision. Change nothing.</strong></p>
 
-<p align="center"><em>git-railgun because gitrail was taken, and railguns &gt; just rails.</em></p>
+<p align="center">A compact, read-only repository sidebar for Herdr and cmux.</p>
 
-<p align="center"><a href="https://kaxyotik.github.io/git-railgun/branding-exploration/"><strong>Explore the Repository Totem and other identity studies</strong></a></p>
+<p align="center">
+  <a href="#quick-start">Quick start</a> &nbsp;|&nbsp;
+  <a href="#interaction">Controls</a> &nbsp;|&nbsp;
+  <a href="#exact-git-semantics">Git semantics</a> &nbsp;|&nbsp;
+  <a href="#configuration">Configuration</a> &nbsp;|&nbsp;
+  <a href="#documentation">Documentation</a>
+</p>
 
-Herdr GitRail is a compact, read-only sidebar for a Herdr tab's current
-directory. Inside a worktree, every row retains its exact Git scope, so
-Against-base, Commit, Staged, Unstaged, Untracked, and clean-file previews
-cannot be confused. Outside Git, Files remains a bounded filesystem browser
-while Changes clearly reports that Git state is unavailable.
+<p align="center"><sub>git-railgun because gitrail was taken, and railguns &gt; just rails.</sub></p>
 
-GitRail also ships a separate host for cmux's **right sidebar Dock**. The cmux
-host reuses the same provider, models, TUI, and exact-revision semantics while
-opening selections as tabs in cmux's native file viewer. It does not use
-cmux's left/custom-sidebar interpreter or ExtensionKit. See
-[cmux Dock installation and lifecycle](docs/CMUX.md).
+## Read the repo without touching it
 
-## Requirements
+<p align="center">
+  <img src="docs/branding-exploration/assets/readme-product.png" width="960" alt="The actual GitRail sidebar beside its read-only railgun specification">
+</p>
 
-- Node.js 22 or newer
-- Git 2.35 or newer
-- Herdr 0.8.x
-- macOS or Linux
+GitRail sits beside the current directory and keeps the source of every row
+explicit. Against-base, Commit, Staged, Unstaged, Untracked, and clean-file
+previews cannot be confused because each selection carries its exact Git scope
+all the way into Diff or Raw view.
 
-The Herdr host requires Herdr 0.8.x. The cmux host instead requires a cmux
-build with right-sidebar Dock controls and the supported v2 surface/CLI
-operations described in [the cmux guide](docs/CMUX.md); cmux is macOS-only.
+| Changes | Files | Preview |
+| --- | --- | --- |
+| Shows branch-relative, committed, staged, unstaged, and untracked state. | Shows every current tracked and untracked path, including clean files. | Opens the exact diff or raw revision represented by the selected row. |
 
-The launcher rejects Node versions older than 22. Release validation runs on
-Node 22 and 24 and covers Herdr 0.8.x; other supported Node releases and newer
-Herdr versions are outside the 0.1.0 validation target.
+The rail is read-only: it does not stage, reset, rebase, rewrite history, or
+mutate repository contents. Outside a Git worktree, Files becomes a bounded
+filesystem browser while Changes clearly reports that Git state is unavailable.
 
-No editor is required. GitRail uses `$EDITOR` when it is set, or an explicit
-editor configuration when provided. In Herdr, the installed defaults open
-`.md`, `.mdx`, and `.markdown` files directly in the operating system's default
-application, bypassing the generic Diff/Raw preview entirely.
+The Herdr host opens a plugin-owned sidebar. The separate cmux host uses the
+same provider, models, TUI, and revision semantics in cmux's **right sidebar
+Dock**, opening selections in the native file viewer. See the
+[cmux Dock guide](docs/CMUX.md).
 
-## Install and launch
+## Quick start
+
+Requires Node.js 22+, Git 2.35+, and macOS or Linux. The Herdr host targets
+Herdr 0.8.x. The cmux host is macOS-only and requires the right-sidebar Dock
+controls described in the [cmux guide](docs/CMUX.md).
 
 ```bash
 npm ci --ignore-scripts
@@ -116,6 +118,9 @@ Live Herdr captures of that demo are available at
 - Folder expanders are currently mouse controls; commit expansion and file
   opening remain fully keyboard-accessible.
 
+<details>
+<summary><strong>View behavior, previews, and edge cases</strong></summary>
+
 Against-base and Commits begin collapsed; Staged, Unstaged, and Untracked begin
 expanded. Untracked is a separate section immediately after Unstaged and uses
 Git's `?` marker, so a staged addition (`⊞`) cannot be confused with a file Git
@@ -157,7 +162,9 @@ the exact Raw revision. Binary and oversized content produce bounded,
 actionable errors. A `?` statistic means the aggregate untracked-inspection
 budget was reached; opening that file still computes its bounded preview.
 
-## Git semantics
+</details>
+
+## Exact Git semantics
 
 | Selected row | Preview command |
 | --- | --- |
@@ -201,6 +208,9 @@ Use [git-rail.config.example.json](git-rail.config.example.json) as a starting
 point. Configuration version 1 is validated; malformed JSON and invalid values
 are shown in the rail instead of being ignored. Repository contents are never
 read as configuration and cannot choose editor or viewer executables.
+
+<details>
+<summary><strong>Complete configuration behavior and examples</strong></summary>
 
 `version` identifies the configuration format, not the GitRail release. It lets
 GitRail reject a future incompatible format instead of interpreting changed
@@ -335,6 +345,8 @@ Viewer and editor actions materialize the exact selected commit, Against-base,
 or staged revision with a bounded byte-preserving copy. This allows OS-default
 Open and external applications to handle images, PDFs, and other binary files;
 the terminal Raw view remains deliberately text-only and UTF-8 validated.
+
+</details>
 
 ## Development
 

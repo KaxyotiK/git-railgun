@@ -222,7 +222,7 @@
   <main>
     <section class="hero" id="top">
       <div class="hero-copy">
-        <div><p class="kicker">Quake II / first-person view / vertical file rail</p><h1>Load<br>the <span>repo.</span></h1><p class="lede">A corrected direction: the orange railgun rises from the bottom of the frame. Its recessed spine is loaded with files. One selected path leaves the muzzle as a shot.</p></div>
+        <div><p class="kicker">Quake II / first-person view / vertical file rail</p><h1>Load<br>the <span>repo.</span></h1><p class="lede">The repository becomes the weapon: an orange railgun rises from the bottom of the frame, its recessed spine loaded with files. One selected path leaves the muzzle as a shot.</p></div>
         <div class="readout"><span>concept chamber <b>03 / 03 ready</b></span><span>↑ fire direction</span></div>
       </div>
       <div class="hero-visual">
@@ -305,6 +305,10 @@
     const meter = document.querySelector('.charge i');
     const updateMeter = () => { const range = document.documentElement.scrollHeight - innerHeight; meter.style.setProperty('--charge', `${range ? scrollY / range * 100 : 0}%`); };
     addEventListener('scroll', updateMeter, { passive: true }); updateMeter();
+    addEventListener('load', () => {
+      const target = location.hash && document.querySelector(location.hash);
+      if (target) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+    }, { once: true });
     const loaded = new Map(); const drawer = document.querySelector('.drawer'); const items = document.querySelector('.drawer-items');
     function renderLoaded() { items.innerHTML = ''; if (!loaded.size) { items.innerHTML = '<div class="drawer-item"><strong>Empty chamber</strong><span>Use + on a mark to load it.</span></div>'; drawer.classList.remove('open'); return; } loaded.forEach((mark, name) => { const item = document.createElement('div'); item.className = 'drawer-item'; item.innerHTML = `<strong>${name}</strong><span>${mark.dataset.note}</span>`; items.append(item); }); drawer.classList.add('open'); }
     document.querySelectorAll('.pick').forEach(button => button.addEventListener('click', () => { const mark = button.closest('.mark'); const active = button.getAttribute('aria-pressed') === 'true'; button.setAttribute('aria-pressed', String(!active)); button.textContent = active ? '+' : '✓'; mark.classList.toggle('picked', !active); if (active) loaded.delete(mark.dataset.name); else loaded.set(mark.dataset.name, mark); renderLoaded(); }));
